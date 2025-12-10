@@ -52,7 +52,7 @@ df_summary <- df |>
     percentage = n / sum(n) * 100
   )
 
-ggplot(df_summary, aes(x = fct_rev(age), y = percentage)) +
+p <- ggplot(df_summary, aes(x = fct_rev(age), y = percentage)) +
   geom_chicklet(fill = "royalblue") +
   coord_flip() +
   geom_text(
@@ -67,7 +67,7 @@ ggplot(df_summary, aes(x = fct_rev(age), y = percentage)) +
   scale_x_discrete(expand = expansion(add = c(0.70, 0.70))) +
   scale_y_continuous(expand = expansion(mult = c(0.01, 0.20))) +
   labs(
-    title = "Which kind of developer are you?",
+    title = "How old are you?",
     x = "",
     y = "",
   ) +
@@ -86,6 +86,16 @@ ggplot(df_summary, aes(x = fct_rev(age), y = percentage)) +
       family = "roboto",
       size = 15,
       face = "bold",
-      margin = margin(b = 10, l = -85),
+      margin = margin(b = 8, l = -107),
     ),
+    plot.margin = margin(t = 10, r = 10, b = 1, l = 10)
   )
+
+ggsave(
+  "plots/age.png",
+  plot = p,
+  width = 520,
+  height = 405,
+  units = "px",
+  dpi = 100
+)

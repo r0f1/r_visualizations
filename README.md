@@ -1,6 +1,12 @@
 
 # Stack Overflow Survey 2024
 
+Visualizations of select questions from the [2024 Stack Overflow Developer Survey](https://survey.stackoverflow.co/2024/).
+
+| Age |
+|:----------------:|
+| ![](plots/age.png "age") | 
+
 ## Installation
 
 * Install [git lfs](https://git-lfs.com/).
