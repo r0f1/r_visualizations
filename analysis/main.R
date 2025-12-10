@@ -95,7 +95,7 @@ ggsave(
   "plots/age.png",
   plot = p,
   width = 520,
-  height = 405,
+  height = 350,
   units = "px",
   dpi = 100
 )
