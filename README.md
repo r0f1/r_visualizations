@@ -1,11 +1,11 @@
 
-# Stack Overflow Survey 2024
+# 2024 Stack Overflow Developer Survey
 
 Visualizations of select questions from the [2024 Stack Overflow Developer Survey](https://survey.stackoverflow.co/2024/).
 
 | Age |
 |:----------------:|
-| ![](plots/age.png "age") | 
+| ![](plots/age.svg "age") |
 
 ## Installation
 

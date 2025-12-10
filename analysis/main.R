@@ -92,10 +92,10 @@ p <- ggplot(df_summary, aes(x = fct_rev(age), y = percentage)) +
   )
 
 ggsave(
-  "plots/age.png",
+  "plots/age.svg",
   plot = p,
-  width = 520,
-  height = 350,
+  width = 500,
+  height = 320,
   units = "px",
-  dpi = 100
+  dpi = 100,
 )
