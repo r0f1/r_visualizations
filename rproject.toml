@@ -16,5 +16,11 @@ repositories = [
     # {name = "dplyr", repository = "CRAN"},
     # {name = "dplyr", git = "https://github.com/tidyverse/dplyr.git", tag = "v1.1.4"},
 dependencies = [
+    "dplyr",
+    "tidyverse",
+    { name = "ggchicklet", git = "https://github.com/hrbrmstr/ggchicklet/", commit="64c468dd0900153be1690dbfc5cfb35710da8183"},
+    "ggtext",
+    "showtext",
+    { name = "bbplot", git = "https://github.com/bbc/bbplot/", commit="82af5952230c695bd317d7786587cfffea7f7621"},
 
 ]
