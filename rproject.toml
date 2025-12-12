@@ -23,4 +23,5 @@ dependencies = [
     "showtext",
     { name = "bbplot", git = "https://github.com/bbc/bbplot/", commit="82af5952230c695bd317d7786587cfffea7f7621"},
     "svglite",
+    "palmerpenguins",
 ]
