@@ -2,7 +2,9 @@
 
 <table>
   <tr>
-    <th colspan="2">Histograms [^1]</th>
+    <th colspan="2">
+    Histograms <p markdown="1">[^1]</p>
+    </th>
   </tr>
   <tr>
     <td valign="top"><img src="plots/age.svg"></td>
