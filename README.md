@@ -3,9 +3,15 @@
 
 Visualizations of select questions from the [2024 Stack Overflow Developer Survey](https://survey.stackoverflow.co/2024/).
 
-| Age | Status |
-|:----------------:|:----------------:|
-| ![](plots/age.svg "age") | ![](plots/status.svg "status") |
+<table>
+  <tr>
+    <th colspan="2">Histograms</th>
+  </tr>
+  <tr>
+    <td valign="top"><img src="plots/age.svg"></td>
+    <td valign="top"><img src="plots/status.svg"></td>
+  </tr>
+</table>
 
 ## Installation
 
