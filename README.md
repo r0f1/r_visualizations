@@ -3,9 +3,9 @@
 
 Visualizations of select questions from the [2024 Stack Overflow Developer Survey](https://survey.stackoverflow.co/2024/).
 
-| Age |
-|:----------------:|
-| ![](plots/age.svg "age") |
+| Age | Status |
+|:----------------:|:----------------:|
+| ![](plots/age.svg "age") | ![](plots/status.svg "status") |
 
 ## Installation
 
