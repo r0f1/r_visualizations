@@ -1,9 +1,9 @@
-# Visualizations
+# Visualizations with R
 
 <table>
   <tr>
     <th colspan="2">
-    Histograms <p markdown="1">[^1]</p>
+    Histograms <span markdown="1">[^1]</span>
     </th>
   </tr>
   <tr>
