@@ -77,7 +77,7 @@ p <- ggplot(df_summary, aes(x = fct_rev(mainbranch), y = percentage)) +
   )
 
 ggsave(
-  "plots/status.svg",
+  "plots/developer_status.svg",
   plot = p,
   width = 500,
   height = 230,

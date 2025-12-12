@@ -1,7 +1,12 @@
 library(ggplot2)
 library(palmerpenguins)
+library(showtext)
 
-ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+font_add_google("Roboto", "roboto")
+showtext_auto()
+showtext_opts(dpi = 100)
+
+p <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
   geom_violin(aes(color = species), trim = FALSE) +
   geom_boxplot(width = 0, outlier.shape = NA) +
   stat_summary(fun = median, geom = "point", size = 2, color = "black") +
@@ -69,3 +74,12 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
       family = "roboto",
     ),
   )
+
+ggsave(
+  "plots/penguin_weight.svg",
+  plot = p,
+  width = 600,
+  height = 400,
+  units = "px",
+  dpi = 100,
+)
