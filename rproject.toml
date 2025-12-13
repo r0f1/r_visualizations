@@ -25,4 +25,5 @@ dependencies = [
     "svglite",
     "palmerpenguins",
     "ggbeeswarm",
+    "ggnewscale",
 ]

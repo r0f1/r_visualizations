@@ -605,6 +605,15 @@ dependencies = [
 ]
 
 [[packages]]
+name = "ggnewscale"
+version = "0.5.2"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 3.5.0)" },
+]
+
+[[packages]]
 name = "ggplot2"
 version = "4.0.1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
