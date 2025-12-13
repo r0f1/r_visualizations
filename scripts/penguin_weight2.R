@@ -7,9 +7,9 @@ library(ggnewscale)
 library(ggtext)
 
 
-font_add_google("Roboto", "roboto")
-showtext_auto()
-showtext_opts(dpi = 100)
+# font_add_google("Roboto", "roboto")
+# showtext_auto()
+# showtext_opts(dpi = 100)
 
 df <- penguins |>
   dplyr::filter(species == "Gentoo") |>
@@ -36,7 +36,7 @@ ggplot(df, aes(x = sex, y = body_mass_g, color = sex)) +
   labs(
     title = "Weights of <span style='color:#d54c16'>female</span> and <span style='color:#32779e'>male</span> Gentoos",
     x = "",
-    y = "Body mass [g]",
+    y = "Weight [g]",
   ) +
   theme_minimal() +
   theme(
@@ -51,8 +51,7 @@ ggplot(df, aes(x = sex, y = body_mass_g, color = sex)) +
       hjust = 0.5,
       size = 14,
       face = "bold",
-      family = "roboto",
-      linewidth = 1.2
+      # family = "",
     ),
   )
 
