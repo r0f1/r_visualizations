@@ -16,6 +16,7 @@
   </tr>
   <tr>
     <td valign="top"><img src="plots/penguin_weight.svg"></td>
+    <td valign="top"><img src="plots/penguin_weight2.svg"></td>
   </tr>
 </table>
 
