@@ -21,8 +21,8 @@ p <- ggplot(df, aes(x = model, y = value, fill = model, color = model)) +
   geom_chicklet() +
   geom_text(
     aes(label = sprintf("%.1f%%", value)),
-    vjust = -0.75,
-    size = 4.25,
+    vjust = -0.65,
+    size = 3.5,
     color = "black"
   ) +
   scale_fill_manual(values = c("#cae1ff", "#4682b4")) +
@@ -40,14 +40,14 @@ p <- ggplot(df, aes(x = model, y = value, fill = model, color = model)) +
     legend.position = "none",
     axis.line = element_line(color = "black", size = 0.5),
     axis.text.x = element_text(
-      size = 13,
+      size = 10,
       angle = 45,
       hjust = 1,
       color = "black",
-      vjust = 0.90,
+      vjust = 0.95,
     ),
     axis.text.y = element_text(
-      size = 13,
+      size = 10,
       color = "black",
       family = "mono",
     ),
@@ -55,14 +55,14 @@ p <- ggplot(df, aes(x = model, y = value, fill = model, color = model)) +
       color = "black",
       size = 0.5
     ),
-    axis.ticks.length.x = unit(0.2, "cm"),
-    axis.ticks.length.y = unit(0.2, "cm"),
-    axis.title = element_text(size = 13, color = "black"),
-    axis.title.y = element_text(margin = margin(r = 25)),
+    axis.ticks.length.x = unit(0.15, "cm"),
+    axis.ticks.length.y = unit(0.15, "cm"),
+    axis.title = element_text(size = 10, color = "black"),
+    axis.title.y = element_text(margin = margin(r = 15)),
     plot.title = element_text(
-      size = 15,
+      size = 12,
       face = "bold",
-      margin = margin(b = 25, l = -72),
+      margin = margin(b = 20, l = -50),
       lineheight = 1.2,
     ),
     panel.grid = element_blank()
@@ -71,8 +71,8 @@ p <- ggplot(df, aes(x = model, y = value, fill = model, color = model)) +
 ggsave(
   "plots/model_comparison.svg",
   plot = p,
-  width = 300,
-  height = 500,
+  width = 250,
+  height = 350,
   units = "px",
   dpi = 100,
 )

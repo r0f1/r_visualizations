@@ -5,14 +5,14 @@
     <th colspan="2">Visualizations</th>
   </tr>
   <tr>
-    <td colspan="2">[Developer Survey](https://www.kaggle.com/datasets/berkayalan/stack-overflow-annual-developer-survey-2024)</td>
+    <td colspan="2"><a href="https://www.kaggle.com/datasets/berkayalan/stack-overflow-annual-developer-survey-2024">Developer Survey</a></td>
   </tr>
   <tr>
     <td valign="top"><img src="plots/developer_age.svg"></td>
     <td valign="top"><img src="plots/developer_status.svg"></td>
   </tr>
   <tr> 
-    <td colspan="2">[Penguin Weights](https://allisonhorst.github.io/palmerpenguins/)</td>
+    <td colspan="2"><a href="https://allisonhorst.github.io/palmerpenguins/">Penguin Weights</a></td>
   </tr>
   <tr>
     <td valign="top"><img src="plots/penguin_weight.svg"></td>
@@ -22,14 +22,14 @@
     <td colspan="2">Model Comparison</td>
   </tr>
   <tr>
-    <td valign="top"><img src="plots/model_comparison.svg"></td>
+    <td valign="top" colspan="2"><img src="plots/model_comparison.svg"></td>
     <td></td>
   </tr>
   <tr>
     <td colspan="2">Survey</td>
   </tr>
   <tr>
-    <td valign="top"><img src="plots/american_sentiment.svg"></td>
+    <td valign="top" colspan="2"><img src="plots/american_sentiment.svg"></td>
     <td></td>
   </tr>
 </table>
