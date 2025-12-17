@@ -8,8 +8,12 @@
     <td colspan="2"><a href="https://www.kaggle.com/datasets/berkayalan/stack-overflow-annual-developer-survey-2024">Developer Survey</a></td>
   </tr>
   <tr>
-    <td valign="top"><img src="plots/developer_age.svg"></td>
-    <td valign="top"><img src="plots/developer_status.svg"></td>
+    <td valign="top">
+      <a href="plots/developer_age.svg">
+        <img src="plots/developer_age.svg" width="350"/>
+      </a>
+    </td>
+    <td valign="top"><img src="plots/developer_status.svg" width="400"></td>
   </tr>
   <tr> 
     <td colspan="2"><a href="https://allisonhorst.github.io/palmerpenguins/">Penguin Weights</a></td>
