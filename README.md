@@ -26,7 +26,7 @@
     <td></td>
   </tr>
   <tr>
-    <td colspan="2">Survey</td>
+    <td colspan="2"><a href="https://today.yougov.com/politics/articles/52137-how-americans-rate-donald-trumps-handling-of-52-issues">YouGov Survey</a></td>
   </tr>
   <tr>
     <td valign="top" colspan="2"><img src="plots/american_sentiment.svg"></td>
