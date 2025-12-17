@@ -52,7 +52,7 @@ Click on the images to enlage.
   </tr>
   <tr>
     <td valign="top" colspan="2">
-      <a href="plots/model_comparison.svg">
+      <a href="plots/american_sentiment.svg">
         <img src="plots/american_sentiment.svg" width="300"/>
       </a>
     </td>
