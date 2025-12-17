@@ -1,5 +1,8 @@
 # Visualizations with R
 
+Just some playground for visualizations with ggplot.   
+Click on the images to enlage.
+
 <table>
   <tr>
     <th colspan="2">Visualizations</th>
@@ -10,31 +13,49 @@
   <tr>
     <td valign="top">
       <a href="plots/developer_age.svg">
-        <img src="plots/developer_age.svg" width="350"/>
+        <img src="plots/developer_age.svg" width="300"/>
       </a>
     </td>
-    <td valign="top"><img src="plots/developer_status.svg" width="400"></td>
+    <td valign="top">
+      <a href="plots/developer_status.svg">
+        <img src="plots/developer_status.svg" width="300" />
+      </a>
+    </td>
   </tr>
   <tr> 
     <td colspan="2"><a href="https://allisonhorst.github.io/palmerpenguins/">Penguin Weights</a></td>
   </tr>
   <tr>
-    <td valign="top"><img src="plots/penguin_weight.svg"></td>
-    <td valign="top"><img src="plots/penguin_weight2.svg"></td>
+    <td valign="top">
+      <a href="plots/penguin_weight.svg">
+        <img src="plots/penguin_weight.svg" width="300"/>
+      </a>  
+    </td>
+    <td valign="top">
+      <a href="plots/penguin_weight2.svg">
+        <img src="plots/penguin_weight2.svg" width="300"/>
+      </a>
+    </td>
   </tr>
   <tr>
     <td colspan="2">Model Comparison</td>
   </tr>
   <tr>
-    <td valign="top" colspan="2"><img src="plots/model_comparison.svg"></td>
-    <td></td>
+    <td valign="top" colspan="2">
+      <a href="plots/model_comparison.svg">
+        <img src="plots/model_comparison.svg" width="300"/>
+      </a>
+    </td>
   </tr>
   <tr>
     <td colspan="2"><a href="https://today.yougov.com/politics/articles/52137-how-americans-rate-donald-trumps-handling-of-52-issues">YouGov Survey</a></td>
   </tr>
   <tr>
-    <td valign="top" colspan="2"><img src="plots/american_sentiment.svg"></td>
-    <td></td>
+    <td valign="top" colspan="2">
+      <a href="plots/model_comparison.svg">
+        <img src="plots/american_sentiment.svg" width="300"/>
+      </a>
+    </td>
   </tr>
 </table>
 
