@@ -5,18 +5,32 @@
     <th colspan="2">Visualizations</th>
   </tr>
   <tr>
-    <td colspan="2">Discrete</td>
+    <td colspan="2">[Developer Survey](https://www.kaggle.com/datasets/berkayalan/stack-overflow-annual-developer-survey-2024)</td>
   </tr>
   <tr>
     <td valign="top"><img src="plots/developer_age.svg"></td>
     <td valign="top"><img src="plots/developer_status.svg"></td>
   </tr>
-  <tr>
-    <td colspan="2">Continuous</td>
+  <tr> 
+    <td colspan="2">[Penguin Weights](https://allisonhorst.github.io/palmerpenguins/)</td>
   </tr>
   <tr>
     <td valign="top"><img src="plots/penguin_weight.svg"></td>
     <td valign="top"><img src="plots/penguin_weight2.svg"></td>
+  </tr>
+  <tr>
+    <td colspan="2">Model Comparison</td>
+  </tr>
+  <tr>
+    <td valign="top"><img src="plots/model_comparison.svg"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2">Survey</td>
+  </tr>
+  <tr>
+    <td valign="top"><img src="plots/american_sentiment.svg"></td>
+    <td></td>
   </tr>
 </table>
 
@@ -26,8 +40,3 @@
 * Install [just](https://github.com/casey/just).
 * Clone the repository.
 * Run `just init`.
-
-# Resources
-
-* [2024 Stack Overflow Developer Survey](https://www.kaggle.com/datasets/berkayalan/stack-overflow-annual-developer-survey-2024)
-* [Palmer Penguins Dataset](https://allisonhorst.github.io/palmerpenguins/)
