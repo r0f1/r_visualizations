@@ -27,4 +27,6 @@ dependencies = [
     "ggbeeswarm",
     "ggnewscale",
     "ggpubr",
+    "survival",
+    "survminer",
 ]
