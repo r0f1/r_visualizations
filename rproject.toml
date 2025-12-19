@@ -29,4 +29,6 @@ dependencies = [
     "ggpubr",
     "survival",
     "survminer",
+    "patchwork",
+    "pammtools",
 ]

@@ -25,9 +25,40 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "Hmisc"
+version = "5.2-4"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "ggplot2",
+    "cluster",
+    "rpart",
+    "nnet",
+    "foreign",
+    "gtable",
+    "gridExtra",
+    "data.table",
+    { name = "htmlTable", requirement = "(>= 1.11.0)" },
+    "viridisLite",
+    "htmltools",
+    "base64enc",
+    "colorspace",
+    "rmarkdown",
+    "knitr",
+    "Formula",
+]
+
+[[packages]]
 name = "KMsurv"
 version = "0.1-6"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "KernSmooth"
+version = "2.23-26"
+source = { builtin = true }
 force_source = false
 dependencies = []
 
@@ -55,6 +86,19 @@ force_source = false
 dependencies = [
     { name = "Matrix", requirement = "(>= 1.6-0)" },
     { name = "Matrix", requirement = "(< 1.8-0)" },
+]
+
+[[packages]]
+name = "Publish"
+version = "2025.07.24"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "prodlim", requirement = "(>= 1.5.4)" },
+    { name = "survival", requirement = "(>= 2.38)" },
+    { name = "data.table", requirement = "(>= 1.10.4)" },
+    { name = "lava", requirement = "(>= 1.5.1)" },
+    { name = "multcomp", requirement = "(>= 1.4)" },
 ]
 
 [[packages]]
@@ -113,11 +157,28 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "SQUAREM"
+version = "2021.1"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
 name = "SparseM"
 version = "1.84-2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
+
+[[packages]]
+name = "TH.data"
+version = "1.1-5"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "survival",
+    "MASS",
+]
 
 [[packages]]
 name = "TTR"
@@ -308,6 +369,15 @@ dependencies = [
 ]
 
 [[packages]]
+name = "checkmate"
+version = "2.3.3"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "backports", requirement = "(>= 1.1.0)" },
+]
+
+[[packages]]
 name = "cli"
 version = "3.6.5"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -318,6 +388,29 @@ dependencies = []
 name = "clipr"
 version = "0.8.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "cluster"
+version = "2.1.8.1"
+source = { builtin = true }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "cmprsk"
+version = "2.2-12"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "survival",
+]
+
+[[packages]]
+name = "codetools"
+version = "0.2-20"
+source = { builtin = true }
 force_source = false
 dependencies = []
 
@@ -418,6 +511,15 @@ dependencies = [
 ]
 
 [[packages]]
+name = "diagram"
+version = "1.6.5"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "shape",
+]
+
+[[packages]]
 name = "digest"
 version = "0.6.39"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -445,6 +547,16 @@ dependencies = [
     "purrr",
     "tibble",
     "tidyr",
+]
+
+[[packages]]
+name = "doParallel"
+version = "1.0.17"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "foreach", requirement = "(>= 1.2.0)" },
+    { name = "iterators", requirement = "(>= 1.0.0)" },
 ]
 
 [[packages]]
@@ -536,6 +648,16 @@ dependencies = [
 ]
 
 [[packages]]
+name = "foreach"
+version = "1.5.2"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "codetools",
+    "iterators",
+]
+
+[[packages]]
 name = "forecast"
 version = "8.24.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -558,6 +680,13 @@ dependencies = [
 ]
 
 [[packages]]
+name = "foreign"
+version = "0.8-90"
+source = { builtin = true }
+force_source = false
+dependencies = []
+
+[[packages]]
 name = "fracdiff"
 version = "1.5-3"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -570,6 +699,28 @@ version = "1.6.6"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
+
+[[packages]]
+name = "future"
+version = "1.68.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "digest",
+    { name = "globals", requirement = "(>= 0.18.0)" },
+    { name = "listenv", requirement = "(>= 0.8.0)" },
+    { name = "parallelly", requirement = "(>= 1.44.0)" },
+]
+
+[[packages]]
+name = "future.apply"
+version = "1.20.1"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "future", requirement = "(>= 1.49.0)" },
+    "globals",
+]
 
 [[packages]]
 name = "gargle"
@@ -714,6 +865,29 @@ dependencies = [
 ]
 
 [[packages]]
+name = "glmnet"
+version = "4.1-10"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "Matrix", requirement = "(>= 1.0-6)" },
+    "foreach",
+    "shape",
+    "survival",
+    "Rcpp",
+    "RcppEigen",
+]
+
+[[packages]]
+name = "globals"
+version = "0.18.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "codetools",
+]
+
+[[packages]]
 name = "glue"
 version = "1.8.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -844,6 +1018,21 @@ dependencies = [
 ]
 
 [[packages]]
+name = "htmlTable"
+version = "2.4.3"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "stringr",
+    { name = "knitr", requirement = "(>= 1.6)" },
+    { name = "magrittr", requirement = "(>= 1.5)" },
+    "checkmate",
+    "htmlwidgets",
+    "htmltools",
+    { name = "rstudioapi", requirement = "(>= 0.6)" },
+]
+
+[[packages]]
 name = "htmltools"
 version = "0.5.9"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -853,6 +1042,19 @@ dependencies = [
     "digest",
     { name = "fastmap", requirement = "(>= 1.1.0)" },
     { name = "rlang", requirement = "(>= 1.0.0)" },
+]
+
+[[packages]]
+name = "htmlwidgets"
+version = "1.6.4"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "htmltools", requirement = "(>= 0.5.7)" },
+    { name = "jsonlite", requirement = "(>= 0.9.16)" },
+    { name = "knitr", requirement = "(>= 1.8)" },
+    "rmarkdown",
+    "yaml",
 ]
 
 [[packages]]
@@ -888,6 +1090,13 @@ dependencies = [
     "rlang",
     "cpp11",
 ]
+
+[[packages]]
+name = "iterators"
+version = "1.0.14"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
 
 [[packages]]
 name = "jpeg"
@@ -948,6 +1157,27 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "lava"
+version = "1.8.2"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "cli",
+    "future.apply",
+    "numDeriv",
+    "progressr",
+    "survival",
+    "SQUAREM",
+]
+
+[[packages]]
+name = "lazyeval"
+version = "0.2.2"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
 name = "lifecycle"
 version = "1.0.4"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -957,6 +1187,13 @@ dependencies = [
     "glue",
     { name = "rlang", requirement = "(>= 1.1.0)" },
 ]
+
+[[packages]]
+name = "listenv"
+version = "0.10.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
 
 [[packages]]
 name = "litedown"
@@ -1045,6 +1282,21 @@ dependencies = [
 ]
 
 [[packages]]
+name = "mets"
+version = "1.3.8"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "Rcpp",
+    { name = "lava", requirement = "(>= 1.8.1)" },
+    "mvtnorm",
+    "numDeriv",
+    { name = "survival", requirement = "(>= 2.43-1)" },
+    { name = "timereg", requirement = "(>= 1.9.4)" },
+    "RcppArmadillo",
+]
+
+[[packages]]
 name = "mgcv"
 version = "1.9-3"
 source = { builtin = true }
@@ -1091,6 +1343,19 @@ dependencies = [
     { name = "tidyr", requirement = "(>= 0.8.0)" },
     "tidyselect",
     "vctrs",
+]
+
+[[packages]]
+name = "multcomp"
+version = "1.4-29"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "mvtnorm", requirement = "(>= 1.0-10)" },
+    { name = "survival", requirement = "(>= 2.39-4)" },
+    { name = "TH.data", requirement = "(>= 1.0-2)" },
+    { name = "sandwich", requirement = "(>= 2.3-0)" },
+    "codetools",
 ]
 
 [[packages]]
@@ -1147,6 +1412,50 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "pammtools"
+version = "0.7.3"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "mgcv",
+    { name = "survival", requirement = "(>= 2.39-5)" },
+    "checkmate",
+    "magrittr",
+    "rlang",
+    { name = "tidyr", requirement = "(>= 1.0.0)" },
+    { name = "ggplot2", requirement = "(>= 3.2.2)" },
+    { name = "dplyr", requirement = "(>= 1.0.0)" },
+    { name = "purrr", requirement = "(>= 0.2.3)" },
+    "tibble",
+    "lazyeval",
+    "Formula",
+    "mvtnorm",
+    "pec",
+    { name = "vctrs", requirement = "(>= 0.3.0)" },
+    "scam",
+]
+
+[[packages]]
+name = "parallelly"
+version = "1.46.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "patchwork"
+version = "1.3.2"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 3.0.0)" },
+    { name = "gtable", requirement = "(>= 0.3.6)" },
+    { name = "rlang", requirement = "(>= 1.0.0)" },
+    "cli",
+    "farver",
+]
+
+[[packages]]
 name = "pbkrtest"
 version = "0.5.5"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1159,6 +1468,21 @@ dependencies = [
     "numDeriv",
     { name = "Matrix", requirement = "(>= 1.2.3)" },
     { name = "doBy", requirement = "(>= 4.6.22)" },
+]
+
+[[packages]]
+name = "pec"
+version = "2025.06.24"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "prodlim", requirement = "(>= 1.4.9)" },
+    { name = "foreach", requirement = "(>= 1.4.2)" },
+    { name = "rms", requirement = "(>= 4.2-0)" },
+    { name = "survival", requirement = "(>= 2.37-7)" },
+    { name = "riskRegression", requirement = "(>= 2020.02.05)" },
+    { name = "lava", requirement = "(>= 1.4.1)" },
+    { name = "timereg", requirement = "(>= 1.8.9)" },
 ]
 
 [[packages]]
@@ -1183,8 +1507,22 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "plotrix"
+version = "3.8-13"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
 name = "png"
 version = "0.1-8"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "polspline"
+version = "1.1.25"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
@@ -1214,6 +1552,22 @@ dependencies = [
 ]
 
 [[packages]]
+name = "prodlim"
+version = "2025.04.28"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "Rcpp", requirement = "(>= 0.11.5)" },
+    "rlang",
+    "data.table",
+    "ggplot2",
+    "diagram",
+    "survival",
+    "KernSmooth",
+    "lava",
+]
+
+[[packages]]
 name = "progress"
 version = "1.2.3"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1223,6 +1577,15 @@ dependencies = [
     "hms",
     "prettyunits",
     "R6",
+]
+
+[[packages]]
+name = "progressr"
+version = "0.18.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "digest",
 ]
 
 [[packages]]
@@ -1286,6 +1649,17 @@ force_source = false
 dependencies = [
     { name = "systemfonts", requirement = "(>= 1.0.3)" },
     { name = "textshaping", requirement = "(>= 0.3.0)" },
+]
+
+[[packages]]
+name = "ranger"
+version = "0.17.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "Rcpp", requirement = "(>= 0.11.2)" },
+    "Matrix",
+    "RcppEigen",
 ]
 
 [[packages]]
@@ -1379,6 +1753,33 @@ dependencies = [
 ]
 
 [[packages]]
+name = "riskRegression"
+version = "2025.09.17"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "cmprsk",
+    { name = "data.table", requirement = "(>= 1.12.2)" },
+    "doParallel",
+    "foreach",
+    { name = "ggplot2", requirement = "(>= 3.1.0)" },
+    "lattice",
+    { name = "lava", requirement = "(>= 1.6.5)" },
+    "mets",
+    "mvtnorm",
+    "plotrix",
+    { name = "prodlim", requirement = "(>= 2025.4.28)" },
+    "Publish",
+    "ranger",
+    "Rcpp",
+    { name = "rms", requirement = "(>= 5.1.3)" },
+    "glmnet",
+    { name = "survival", requirement = "(>= 2.44.1)" },
+    { name = "timereg", requirement = "(>= 1.9.3)" },
+    "RcppArmadillo",
+]
+
+[[packages]]
 name = "rlang"
 version = "1.1.6"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1402,6 +1803,39 @@ dependencies = [
     { name = "xfun", requirement = "(>= 0.36)" },
     { name = "yaml", requirement = "(>= 2.1.19)" },
 ]
+
+[[packages]]
+name = "rms"
+version = "8.1-0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "Hmisc", requirement = "(>= 5.2-4)" },
+    "survival",
+    "quantreg",
+    "ggplot2",
+    "Matrix",
+    "SparseM",
+    "rpart",
+    { name = "nlme", requirement = "(>= 3.1-123)" },
+    "polspline",
+    "multcomp",
+    { name = "htmlTable", requirement = "(>= 1.11.0)" },
+    "htmltools",
+    "MASS",
+    "cluster",
+    "digest",
+    "colorspace",
+    "knitr",
+    "scales",
+]
+
+[[packages]]
+name = "rpart"
+version = "4.1.24"
+source = { builtin = true }
+force_source = false
+dependencies = []
 
 [[packages]]
 name = "rstatix"
@@ -1447,6 +1881,15 @@ dependencies = [
 ]
 
 [[packages]]
+name = "sandwich"
+version = "3.1-1"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "zoo",
+]
+
+[[packages]]
 name = "sass"
 version = "0.4.10"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1477,6 +1920,16 @@ dependencies = [
 ]
 
 [[packages]]
+name = "scam"
+version = "1.2-20"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "mgcv", requirement = "(>= 1.8-2)" },
+    "Matrix",
+]
+
+[[packages]]
 name = "selectr"
 version = "0.5-0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1485,6 +1938,13 @@ dependencies = [
     "stringr",
     "R6",
 ]
+
+[[packages]]
+name = "shape"
+version = "1.4.6.1"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
 
 [[packages]]
 name = "showtext"
@@ -1730,6 +2190,17 @@ source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
     { name = "cpp11", requirement = "(>= 0.2.7)" },
+]
+
+[[packages]]
+name = "timereg"
+version = "2.0.7"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "survival",
+    "lava",
+    "numDeriv",
 ]
 
 [[packages]]
