@@ -1,7 +1,6 @@
 # Visualizations with R
 
-Just some playground for visualizations with ggplot.   
-Click on the images to enlage.
+Visualizations with R and ggplot.   
 
 <table>
   <tr>
