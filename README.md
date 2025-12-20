@@ -8,7 +8,7 @@ Click on the images to enlage.
     <th colspan="2">Visualizations</th>
   </tr>
    <tr>
-    <td colspan="2"><a href="https://today.yougov.com/politics/articles/52137-how-americans-rate-donald-trumps-handling-of-52-issues">YouGov Survey</a></td>
+    <td colspan="2"><a href="plots/american_sentiment.svg">American Sentiment</a></td>
   </tr>
   <tr>
     <td valign="top" colspan="2">
@@ -18,7 +18,7 @@ Click on the images to enlage.
     </td>
   </tr>
    <tr>
-    <td colspan="2"><a href="https://stat.ethz.ch/R-manual/R-devel/library/survival/html/lung.html">Kaplan-Meier Plot</a></td>
+    <td colspan="2"><a href="plots/survival_kaplan_meier.svg">Kaplan-Meier Plot</a></td>
   </tr>
   <tr>
     <td valign="top" colspan="2">
@@ -28,7 +28,7 @@ Click on the images to enlage.
     </td>
   </tr>
   <tr>
-    <td colspan="2"><a href="https://www.kaggle.com/datasets/berkayalan/stack-overflow-annual-developer-survey-2024">Developer Survey</a></td>
+    <td colspan="2"><a href="plots/developer_age.svg">Developer Survey</a></td>
   </tr>
   <tr>
     <td valign="top">
@@ -43,7 +43,7 @@ Click on the images to enlage.
     </td>
   </tr>
   <tr> 
-    <td colspan="2"><a href="https://allisonhorst.github.io/palmerpenguins/">Penguin Weights</a></td>
+    <td colspan="2"><a href="plots/penguin_weight.svg">Penguin Weights</a></td>
   </tr>
   <tr>
     <td valign="top">
@@ -58,7 +58,7 @@ Click on the images to enlage.
     </td>
   </tr>
   <tr>
-    <td colspan="2">Model Comparison</td>
+    <td colspan="2"><a href="plots/model_comparison.svg">Model Comparison</a></td>
   </tr>
   <tr>
     <td valign="top" colspan="2">

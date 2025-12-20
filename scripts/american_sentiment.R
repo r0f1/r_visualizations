@@ -1,3 +1,6 @@
+# Data Source
+# https://today.yougov.com/politics/articles/52137-how-americans-rate-donald-trumps-handling-of-52-issues
+
 library(dplyr)
 library(ggplot2)
 library(readr)
