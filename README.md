@@ -8,22 +8,22 @@ Click on the images to enlage.
     <th colspan="2">Visualizations</th>
   </tr>
    <tr>
-    <td colspan="2"><a href="plots/american_sentiment.svg">American Sentiment</a></td>
-  </tr>
-  <tr>
-    <td valign="top" colspan="2">
-      <a href="plots/american_sentiment.svg">
-        <img src="plots/american_sentiment.svg" width="300"/>
-      </a>
-    </td>
-  </tr>
-   <tr>
     <td colspan="2"><a href="plots/survival_kaplan_meier.svg">Kaplan-Meier Plot</a></td>
   </tr>
   <tr>
     <td valign="top" colspan="2">
       <a href="plots/survival_kaplan_meier.svg">
         <img src="plots/survival_kaplan_meier.svg" width="300"/>
+      </a>
+    </td>
+  </tr>
+   <tr>
+    <td colspan="2"><a href="plots/american_sentiment.svg">American Sentiment</a></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <a href="plots/american_sentiment.svg">
+        <img src="plots/american_sentiment.svg" width="300"/>
       </a>
     </td>
   </tr>
