@@ -7,12 +7,22 @@ Visualizations with R and ggplot.
     <th colspan="2">Visualizations</th>
   </tr>
    <tr>
-    <td colspan="2"><a href="plots/survival_kaplan_meier.svg">Kaplan-Meier Plot</a></td>
+    <td colspan="2"><a href="plots/survival_kaplan_meier.svg">Survival Lung Cancer</a></td>
   </tr>
   <tr>
     <td valign="top" colspan="2">
       <a href="plots/survival_kaplan_meier.svg">
         <img src="plots/survival_kaplan_meier.svg" width="300"/>
+      </a>
+    </td>
+  </tr>
+   <tr>
+    <td colspan="2"><a href="plots/measles_ecdc.svg">Measles in Austria</a></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <a href="plots/measles_ecdc.svg">
+        <img src="plots/measles_ecdc.svg" width="300"/>
       </a>
     </td>
   </tr>
