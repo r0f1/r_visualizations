@@ -40,14 +40,9 @@ Visualizations with R and ggplot.
     <td colspan="2"><a href="plots/developer_age.svg">Developer Survey</a></td>
   </tr>
   <tr>
-    <td valign="top">
+    <td valign="top" colspan="2">
       <a href="plots/developer_age.svg">
         <img src="plots/developer_age.svg" width="300"/>
-      </a>
-    </td>
-    <td valign="top">
-      <a href="plots/developer_status.svg">
-        <img src="plots/developer_status.svg" width="300" />
       </a>
     </td>
   </tr>
