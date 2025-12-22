@@ -31,4 +31,5 @@ dependencies = [
     "survminer",
     "patchwork",
     "pammtools",
+    { name = "gghalves", git = "https://github.com/erocoar/gghalves/", commit = "e5c3c79e79f13a00795a2a7774794252d1980d86"},
 ]

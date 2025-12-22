@@ -770,6 +770,16 @@ dependencies = [
 ]
 
 [[packages]]
+name = "gghalves"
+version = "0.1.4"
+source = { git = "https://github.com/erocoar/gghalves/", sha = "e5c3c79e79f13a00795a2a7774794252d1980d86" }
+force_source = true
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 3.3.6)" },
+    "gtable",
+]
+
+[[packages]]
 name = "ggnewscale"
 version = "0.5.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
