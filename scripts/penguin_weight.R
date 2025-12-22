@@ -73,16 +73,16 @@ p <- ggplot(data, aes(x = species, y = body_mass_g, fill = species)) +
   coord_flip() +
   scale_fill_manual(
     values = c(
-      "Adelie" = "#377EB8",
-      "Chinstrap" = "#4DAF4A",
-      "Gentoo" = "#984EA3"
+      "Adelie" = "#619cff",
+      "Chinstrap" = "#00ba38",
+      "Gentoo" = "#f8766d"
     ),
   ) +
   scale_color_manual(
     values = c(
-      "Adelie" = "#377EB8",
-      "Chinstrap" = "#4DAF4A",
-      "Gentoo" = "#984EA3"
+      "Adelie" = "#619cff",
+      "Chinstrap" = "#00ba38",
+      "Gentoo" = "#f8766d"
     )
   ) +
   labs(
