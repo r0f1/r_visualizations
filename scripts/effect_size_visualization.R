@@ -12,14 +12,18 @@ showtext_auto()
 showtext_opts(dpi = 100)
 
 # Function to calculate BCa confidence interval
-bca_ci <- function(data, statistic_func, conf_level = 0.95, R = 5000) {
+bca_ci <- function(
+  data,
+  statistic_func,
+  conf_level = 0.95,
+  R = 5000,
+  seed = NULL
+) {
+  set.seed(seed)
+  
   n <- length(data)
-
-  # Calculate the observed statistic
   theta_hat <- statistic_func(data)
 
-  # Bootstrap resampling
-  set.seed(123)
   theta_star <- replicate(R, {
     boot_sample <- sample(data, n, replace = TRUE)
     statistic_func(boot_sample)
@@ -67,12 +71,6 @@ set.seed(42)
 group1 <- rnorm(30, mean = 5, sd = 1.5)
 group2 <- rnorm(30, mean = 7, sd = 1.8)
 
-# Calculate summary statistics
-mean1 <- mean(group1)
-mean2 <- mean(group2)
-sd1 <- sd(group1)
-sd2 <- sd(group2)
-
 # Calculate mean difference with BCa confidence interval
 mean_diff_result <- bca_ci(
   data = c(group1, group2),
@@ -91,10 +89,6 @@ data_df <- data.frame(
   x_pos = rep(c(1, 2), each = 30)
 )
 
-# Add jitter for beeswarm effect
-set.seed(123)
-data_df$x_jitter <- data_df$x_pos + rnorm(nrow(data_df), 0, 0.05)
-
 # Create mean difference distribution data
 diff_dist_df <- data.frame(
   diff = mean_diff_result$bootstrap_dist,
@@ -102,29 +96,31 @@ diff_dist_df <- data.frame(
 )
 
 # Plot 1: Two groups with beeswarm
-p1 <- ggplot(data_df, aes(x = x_pos, y = value, , color = group)) +
-
+p1 <- ggplot(data_df, aes(x = x_pos, y = value, color = group)) +
   geom_beeswarm(alpha = 0.75, cex = 3, size = 2) +
   scale_color_manual(values = c("Group 1" = "#1f77b4", "Group 2" = "#ff7f0e")) +
 
-  geom_segment(
-    data = summary_df,
-    aes(
-      x = x_pos,
-      xend = x_pos,
-      y = mean_val - sd_val,
-      yend = mean_val + sd_val,
-    ),
+  stat_summary(
+    fun.data = function(y) {
+      data.frame(
+        y = mean(y),
+        ymin = mean(y) - sd(y),
+        ymax = mean(y) + sd(y)
+      )
+    },
+    geom = "errorbar",
     color = "black",
     linewidth = 0.5,
+    width = 0
   ) +
 
-  geom_point(
-    data = summary_df,
-    aes(x = x_pos, y = mean_val),
+  stat_summary(
+    fun = mean,
+    geom = "point",
     color = "black",
-    size = 3,
+    size = 3
   ) +
+
   scale_x_continuous(
     breaks = c(1, 2),
     labels = c("Group 1", "Group 2"),
@@ -139,17 +135,19 @@ p1 <- ggplot(data_df, aes(x = x_pos, y = value, , color = group)) +
     axis.text.x = element_text(size = 11, color = "black"),
     axis.text.y = element_text(size = 11, color = "black"),
     axis.title.y = element_text(size = 12, color = "black"),
-
     axis.ticks = element_line(linewidth = 0.25),
     axis.ticks.length = unit(0.25, "cm"),
     axis.line = element_line(linewidth = 0.25),
-
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     plot.margin = margin(10, 0, 10, 10),
     legend.position = "none",
     text = element_text(family = "Roboto Condensed"),
   )
+
+# Get mean values for reference lines in p2
+mean1 <- mean(group1)
+mean2 <- mean(group2)
 
 p2 <- ggplot(diff_dist_df, aes(x = 0, y = diff)) +
   geom_half_violin(fill = "#2ca02c", alpha = 0.5, trim = TRUE) +
@@ -159,7 +157,6 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = diff)) +
     color = "gray60",
     linewidth = 0.3
   ) +
-
   annotate(
     "point",
     x = 0,
@@ -167,7 +164,6 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = diff)) +
     color = "black",
     size = 3
   ) +
-
   annotate(
     "segment",
     x = -0.5,
@@ -188,21 +184,16 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = diff)) +
     color = "gray40",
     linewidth = 0.5
   ) +
-
   scale_x_continuous(
     breaks = 0,
     labels = "Mean Difference",
     limits = c(-0.5, 0.5)
   ) +
-
   scale_y_continuous(position = "right") +
-
   labs(
     x = "",
     y = "Mean Difference",
   ) +
-
-  # coord_cartesian(ylim = range(data_df$value)) +
   theme_minimal() +
   theme(
     axis.line = element_line(linewidth = 0.25),
@@ -215,7 +206,6 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = diff)) +
     plot.margin = margin(10, 10, 32.5, 0),
     text = element_text(family = "Roboto Condensed"),
   )
-
 
 combined_plot <- grid.arrange(
   p1,
