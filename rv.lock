@@ -18,6 +18,17 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "Durga"
+version = "2.1.0"
+source = { git = "https://github.com/KhanKawsar/EstimationPlot/", sha = "7b103ff41ad107f3bde8ebe1cc20ee24caeb122a" }
+force_source = true
+dependencies = [
+    "vipor",
+    "boot",
+    "RColorBrewer",
+]
+
+[[packages]]
 name = "Formula"
 version = "1.2-5"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
