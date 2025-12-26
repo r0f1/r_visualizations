@@ -21,7 +21,7 @@ showtext_opts(dpi = 100)
 df <- penguins |>
   dplyr::filter(species == "Gentoo", !is.na(sex))
 
-df_long <- df %>%
+df_long <- df |>
   pivot_longer(
     cols = c("body_mass_g"),
     names_to = "column",
@@ -80,9 +80,9 @@ quartiles <- quartiles |>
 
 # Prepare significance annotations
 # Get the positions for each column
-column_positions <- df_long %>%
-  distinct(column, x_position) %>%
-  group_by(column) %>%
+column_positions <- df_long |>
+  distinct(column, x_position) |>
+  group_by(column) |>
   summarise(
     x_min = min(as.numeric(factor(
       x_position,
@@ -97,7 +97,7 @@ column_positions <- df_long %>%
   )
 
 # Join with t-test results
-sig_annotations <- t_test_results %>%
+sig_annotations <- t_test_results |>
   left_join(column_positions, by = "column")
 
 x_offset_line <- -0.15
