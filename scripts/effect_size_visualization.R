@@ -1,12 +1,6 @@
-library(ggplot2)
-library(gridExtra)
-library(grid)
 library(gghalves)
 library(ggbeeswarm)
 library(showtext)
-library(tidyr)
-library(dabestr)
-library(dplyr)
 library(palmerpenguins)
 
 font_add_google("Roboto Condensed")
@@ -24,14 +18,15 @@ dabest_obj <- dabestr::load(
 )
 
 dabest_result <- dabestr::mean_diff(dabest_obj)
+mean_diff_est <- dabest_result$boot_result$difference
 
-diff_dist_df <- tibble(
+diff_dist_df <- tidyr::tibble(
   boot_dist = unlist(dabest_result$boot_result$bootstraps),
   group = "Mean Difference",
 )
 
-mean1 <- mean((data |> filter(sex == "male"))$body_mass_g)
-mean2 <- mean((data |> filter(sex == "female"))$body_mass_g)
+mean1 <- mean((data |> dplyr::filter(sex == "male"))$body_mass_g)
+mean2 <- mean((data |> dplyr::filter(sex == "female"))$body_mass_g)
 min_mean <- min(mean1, mean2)
 
 # Plot 1: Two groups with beeswarm
@@ -166,18 +161,27 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = boot_dist)) +
     text = element_text(family = "Roboto Condensed"),
   )
 
-combined_plot <- grid.arrange(
+combined_plot <- gridExtra::grid.arrange(
   p1,
   p2,
   ncol = 2,
   widths = c(3, 1),
-  top = textGrob(
+  top = grid::textGrob(
     sprintf(
       "Estimation Plot with Bootstrap Confidence Intervals\nMean Difference = %.2f [95%% CI: %.2f, %.2f]",
-      dabest_result$boot_result$difference,
+      mean_diff_est,
       dabest_result$boot_result$bca_ci_low,
       dabest_result$boot_result$bca_ci_high
     ),
-    gp = gpar(fontsize = 14, fontfamily = "Roboto Condensed")
+    gp = grid::gpar(fontsize = 14, fontfamily = "Roboto Condensed")
   )
+)
+
+ggsave(
+  "plots/effect_size_visualization.svg",
+  plot = combined_plot,
+  width = 600,
+  height = 600,
+  units = "px",
+  dpi = 100,
 )
