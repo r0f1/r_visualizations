@@ -4,8 +4,8 @@ library(showtext)
 library(palmerpenguins)
 
 font_add_google("Roboto Condensed")
-showtext_auto()
 showtext_opts(dpi = 100)
+showtext_auto()
 
 data <- penguins |>
   dplyr::filter(species == "Gentoo", !is.na(sex))
