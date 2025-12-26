@@ -20,7 +20,7 @@ bca_ci <- function(
   seed = NULL
 ) {
   set.seed(seed)
-  
+
   n <- length(data)
   theta_hat <- statistic_func(data)
 
@@ -157,39 +157,29 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = diff)) +
     color = "gray60",
     linewidth = 0.3
   ) +
-  annotate(
-    "point",
-    x = 0,
-    y = mean_diff_result$estimate + mean1,
-    color = "black",
-    size = 3
-  ) +
-  annotate(
-    "segment",
-    x = -0.5,
-    xend = 0,
-    y = mean1,
-    yend = mean1,
-    linetype = "dashed",
-    color = "gray40",
-    linewidth = 0.5
-  ) +
-  annotate(
-    "segment",
-    x = -0.5,
-    xend = 0,
-    y = mean2,
-    yend = mean2,
-    linetype = "dashed",
-    color = "gray40",
-    linewidth = 0.5
-  ) +
   scale_x_continuous(
     breaks = 0,
     labels = "Mean Difference",
     limits = c(-0.5, 0.5)
   ) +
-  scale_y_continuous(position = "right") +
+  scale_y_continuous(
+    position = "right",
+    breaks = function(limits) {
+      # Get the range of the difference distribution
+      diff_range <- range(diff_dist_df$diff)
+      # Shift breaks so that 0 aligns with min(mean1, mean2)
+      offset <- min(mean1, mean2)
+      seq(
+        floor(diff_range[1] + offset),
+        ceiling(diff_range[2] + offset),
+        by = 1
+      )
+    },
+    labels = function(breaks) {
+      # Show the actual difference values (relative to 0)
+      breaks - min(mean1, mean2)
+    }
+  ) +
   labs(
     x = "",
     y = "Mean Difference",
