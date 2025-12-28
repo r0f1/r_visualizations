@@ -2,6 +2,7 @@ library(gghalves)
 library(ggbeeswarm)
 library(showtext)
 library(palmerpenguins)
+library(patchwork)
 
 font_add_google("Roboto Condensed")
 showtext_opts(dpi = 100)
@@ -74,13 +75,13 @@ p1 <- ggplot(data, aes(x = sex, y = body_mass_g, color = sex)) +
 
   labs(
     x = "",
-    y = "Value",
+    y = "Weight [g]",
   ) +
   theme_minimal() +
   theme(
     axis.text.x = element_text(size = 11, color = "black"),
     axis.text.y = element_text(size = 11, color = "black"),
-    axis.title.y = element_text(size = 12, color = "black"),
+    axis.title.y = element_text(size = 12, color = "black", margin = margin(r = 10)),
     axis.ticks = element_line(linewidth = 0.25),
     axis.ticks.length = unit(0.25, "cm"),
     axis.line = element_line(linewidth = 0.25),
@@ -144,7 +145,7 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = boot_dist)) +
   ) +
   labs(
     x = "",
-    y = "Mean Difference",
+    y = "Mean Difference [g]",
   ) +
   theme_minimal() +
   theme(
@@ -154,28 +155,32 @@ p2 <- ggplot(diff_dist_df, aes(x = 0, y = boot_dist)) +
     axis.ticks.y = element_line(linewidth = 0.25),
     axis.ticks.length = unit(0.25, "cm"),
     axis.title.y = element_text(size = 12, color = "black"),
-    axis.title.y.right = element_text(angle = 90),
+    axis.title.y.right = element_text(angle = 90, margin = margin(l = 15)),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     plot.margin = margin(10, 10, 32.5, 0),
     text = element_text(family = "Roboto Condensed"),
   )
 
-combined_plot <- gridExtra::grid.arrange(
-  p1,
-  p2,
-  ncol = 2,
-  widths = c(3, 1),
-  top = grid::textGrob(
-    sprintf(
-      "Estimation Plot with Bootstrap Confidence Intervals\nMean Difference = %.2f [95%% CI: %.2f, %.2f]",
+
+combined_plot <- p1 +
+  p2 +
+  plot_layout(ncol = 2, widths = c(3, 1)) +
+  plot_annotation(
+    title = sprintf(
+      "Comparison of Gentoo Penguin Weights by Gender\nMean Difference = %.0fg [95%% CI: %.0f, %.0f]",
       mean_diff_est,
       dabest_result$boot_result$bca_ci_low,
       dabest_result$boot_result$bca_ci_high
     ),
-    gp = grid::gpar(fontsize = 14, fontfamily = "Roboto Condensed")
+    theme = theme(
+      plot.title = element_text(
+        size = 14,
+        family = "Roboto Condensed",
+        hjust = 0.5
+      )
+    )
   )
-)
 
 ggsave(
   "plots/effect_size_visualization.svg",

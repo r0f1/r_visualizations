@@ -62,12 +62,12 @@ Visualizations with R and ggplot.
     </td>
   </tr>
   <tr>
-    <td colspan="2"><a href="plots/model_comparison.svg">Model Comparison</a></td>
+    <td colspan="2"><a href="plots/effect_size_visualization.svg">Estimation Plot</a></td>
   </tr>
   <tr>
     <td valign="top" colspan="2">
-      <a href="plots/model_comparison.svg">
-        <img src="plots/model_comparison.svg" width="300"/>
+      <a href="plots/effect_size_visualization.svg">
+        <img src="plots/effect_size_visualization.svg" width="300"/>
       </a>
     </td>
   </tr>
