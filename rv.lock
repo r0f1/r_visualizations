@@ -305,6 +305,13 @@ dependencies = [
 ]
 
 [[packages]]
+name = "brunnermunzel"
+version = "2.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
 name = "bslib"
 version = "0.9.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -491,6 +498,31 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "dabestr"
+version = "2025.3.15"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "boot",
+    "brunnermunzel",
+    "cli",
+    "cowplot",
+    "dplyr",
+    "effsize",
+    "ggbeeswarm",
+    { name = "ggplot2", requirement = "(>= 3.5.2)" },
+    "ggsci",
+    "magrittr",
+    "RColorBrewer",
+    "rlang",
+    "scales",
+    "stringr",
+    "tibble",
+    "tidyr",
+    "viridisLite",
+]
+
+[[packages]]
 name = "data.table"
 version = "1.17.8"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -605,6 +637,13 @@ dependencies = [
     { name = "tidyselect", requirement = "(>= 1.2.0)" },
     { name = "vctrs", requirement = "(>= 0.4.1)" },
 ]
+
+[[packages]]
+name = "effsize"
+version = "0.8.1"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
 
 [[packages]]
 name = "evaluate"

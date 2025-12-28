@@ -33,4 +33,5 @@ dependencies = [
     "pammtools",
     { name = "gghalves", git = "https://github.com/erocoar/gghalves/", commit = "e5c3c79e79f13a00795a2a7774794252d1980d86"},
     { name = "Durga", git = "https://github.com/KhanKawsar/EstimationPlot/", commit = "7b103ff41ad107f3bde8ebe1cc20ee24caeb122a"},
+    "dabestr",
 ]
