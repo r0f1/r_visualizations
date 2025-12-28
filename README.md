@@ -26,16 +26,6 @@ Visualizations with R and ggplot.
       </a>
     </td>
   </tr>
-   <tr>
-    <td colspan="2"><a href="plots/american_sentiment.svg">American Sentiment</a></td>
-  </tr>
-  <tr>
-    <td valign="top" colspan="2">
-      <a href="plots/american_sentiment.svg">
-        <img src="plots/american_sentiment.svg" width="300"/>
-      </a>
-    </td>
-  </tr>
   <tr>
     <td colspan="2"><a href="plots/developer_age.svg">Developer Survey</a></td>
   </tr>
@@ -43,6 +33,16 @@ Visualizations with R and ggplot.
     <td valign="top" colspan="2">
       <a href="plots/developer_age.svg">
         <img src="plots/developer_age.svg" width="300"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><a href="plots/american_sentiment.svg">American Sentiment</a></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <a href="plots/american_sentiment.svg">
+        <img src="plots/american_sentiment.svg" width="300"/>
       </a>
     </td>
   </tr>
@@ -68,6 +68,16 @@ Visualizations with R and ggplot.
     <td valign="top" colspan="2">
       <a href="plots/effect_size_visualization.svg">
         <img src="plots/effect_size_visualization.svg" width="300"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><a href="plots/boegg.svg">Snowman</a></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <a href="plots/boegg.svg">
+        <img src="plots/boegg.svg" width="300"/>
       </a>
     </td>
   </tr>

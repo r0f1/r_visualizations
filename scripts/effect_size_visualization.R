@@ -81,7 +81,11 @@ p1 <- ggplot(data, aes(x = sex, y = body_mass_g, color = sex)) +
   theme(
     axis.text.x = element_text(size = 11, color = "black"),
     axis.text.y = element_text(size = 11, color = "black"),
-    axis.title.y = element_text(size = 12, color = "black", margin = margin(r = 10)),
+    axis.title.y = element_text(
+      size = 12,
+      color = "black",
+      margin = margin(r = 10)
+    ),
     axis.ticks = element_line(linewidth = 0.25),
     axis.ticks.length = unit(0.25, "cm"),
     axis.line = element_line(linewidth = 0.25),
