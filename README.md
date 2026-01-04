@@ -81,6 +81,16 @@ Visualizations with R and ggplot.
       </a>
     </td>
   </tr>
+  <tr>
+    <td colspan="2"><a href="plots/stackoverflow_questions.svg">Stack Overflow Questions</a></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <a href="plots/stackoverflow_questions.svg">
+        <img src="plots/stackoverflow_questions.svg" width="300"/>
+      </a>
+    </td>
+  </tr>
  
 </table>
 
