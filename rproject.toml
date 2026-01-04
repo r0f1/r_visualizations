@@ -35,4 +35,5 @@ dependencies = [
     { name = "Durga", git = "https://github.com/KhanKawsar/EstimationPlot/", commit = "7b103ff41ad107f3bde8ebe1cc20ee24caeb122a"},
     "dabestr",
     "ggrepel",
+    "readr",
 ]
