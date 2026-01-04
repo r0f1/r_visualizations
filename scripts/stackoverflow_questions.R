@@ -116,13 +116,30 @@ p <- ggplot(data, aes(x = Month, y = Questions)) +
       color = "black",
       size = 0.25
     ),
-    plot.caption = element_markdown(size = 10),
+    plot.caption = element_markdown(
+      size = 10,
+      color = "grey20",
+      margin = margin(t = 10),
+    ),
+    plot.margin = margin(t = 15, r = 15, b = 0, l = 15),
     plot.tag = element_text(size = 13, hjust = 0),
     plot.tag.position = c(0.012, 0.84),
     plot.title = element_text(face = "bold", size = 16),
     plot.subtitle = element_text(size = 12, color = "gray40"),
     text = element_text(family = "Roboto Condensed"),
-  ) 
+  ) +
+  plot_annotation(
+    caption = "Source: Stack Exchange",
+    theme = theme(
+      plot.caption = element_text(
+        size = 10,
+        hjust = 0,
+        margin = margin(t = -10, l = 15),
+        color = "grey20",
+      ),
+      text = element_text(family = "Roboto Condensed"),
+    )
+  )
 
 p
 
