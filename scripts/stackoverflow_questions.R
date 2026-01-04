@@ -1,4 +1,4 @@
-# Source: https://data.stackexchange.com/stackoverflow/query/1926661#resultSets
+# Source: https://data.stackexchange.com/stackoverflow/query/1926661
 
 library(readr)
 library(dplyr)
@@ -7,9 +7,18 @@ library(patchwork)
 library(showtext)
 library(ggtext)
 
+sysfonts::font_add(
+  family = "Font Awesome 6 Brands",
+  regular = "fontawesome/otfs/Font Awesome 7 Brands-Regular-400.otf"
+)
 font_add_google("Roboto Condensed")
 showtext_auto()
 showtext_opts(dpi = 100)
+
+social_caption <- glue::glue(
+  "<span style='font-family:\"Font Awesome 6 Brands\";'>&#xf09b; </span>",
+  "<span> r0f1</span>",
+)
 
 # Launch of SO was Sept 15, 2008.
 # Jan 2026 is incomplete, therefore filtered out.
@@ -26,7 +35,6 @@ raised <- as.Date("2010-05-01")
 acquisition <- as.Date("2021-06-01")
 chatgpt_release <- as.Date("2022-11-30")
 
-# Create the time series plot
 p <- ggplot(data, aes(x = Month, y = Questions)) +
   geom_area(fill = "#ffa225", alpha = 0.5) +
   geom_line(color = "#f48024", size = 0.5) +
@@ -91,6 +99,7 @@ p <- ggplot(data, aes(x = Month, y = Questions)) +
     x = "",
     y = "",
     tag = "Number of questions asked on\nStack Overflow per month",
+    caption = social_caption,
   ) +
   theme_minimal() +
   theme(
@@ -107,22 +116,13 @@ p <- ggplot(data, aes(x = Month, y = Questions)) +
       color = "black",
       size = 0.25
     ),
+    plot.caption = element_markdown(size = 10),
     plot.tag = element_text(size = 13, hjust = 0),
     plot.tag.position = c(0.012, 0.84),
     plot.title = element_text(face = "bold", size = 16),
     plot.subtitle = element_text(size = 12, color = "gray40"),
     text = element_text(family = "Roboto Condensed"),
-  ) +
-  plot_annotation(
-    caption = c("Source: Stack Exchange, Wikipedia", "Github: r0f1"),
-    theme = theme(
-      plot.caption = element_text(
-        hjust = c(0, 1),
-        size = 10,
-        family = "Roboto Condensed",
-      ),
-    )
-  )
+  ) 
 
 p
 
