@@ -3,10 +3,22 @@
 library(tidyverse)
 library(ggchicklet)
 library(showtext)
+library(ggtext)
+library(patchwork)
 
-font_add_google("Roboto", "roboto")
+sysfonts::font_add(
+  family = "Font Awesome 6 Brands",
+  regular = "fontawesome/otfs/Font Awesome 7 Brands-Regular-400.otf"
+)
+
+font_add_google("Roboto Condensed")
 showtext_auto()
 showtext_opts(dpi = 100)
+
+social_caption <- glue::glue(
+  "<span style='font-family:\"Font Awesome 6 Brands\";'>&#xf09b; </span>",
+  "<span> r0f1</span>",
+)
 
 df <- read_csv("data/survey_results_public.csv") |>
   rename_with(tolower) |>
@@ -42,7 +54,6 @@ p <- ggplot(df_summary, aes(x = fct_rev(age), y = percentage)) +
     position = position_stack(vjust = 1),
     hjust = -0.20,
     color = "black",
-    family = "roboto",
     size = 4,
     fontface = "bold",
   ) +
@@ -52,29 +63,45 @@ p <- ggplot(df_summary, aes(x = fct_rev(age), y = percentage)) +
     title = "How old are you?",
     x = "",
     y = "",
+    caption = social_caption,
   ) +
   theme_minimal() +
   theme(
     axis.text.x = element_blank(),
     axis.ticks.x = element_blank(),
     axis.text.y = element_text(
-      family = "roboto",
       size = 12,
       color = "black",
     ),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
+    plot.caption = element_markdown(
+      size = 10,
+      color = "grey20",
+    ),
     plot.title = element_text(
-      family = "roboto",
       size = 15,
       face = "bold",
-      margin = margin(b = 8, l = -104),
+      margin = margin(b = 8, l = -110),
     ),
-    plot.margin = margin(t = 10, r = 10, b = 1, l = 10)
+    plot.margin = margin(t = 10, r = 10, b = 10, l = 10),
+    text = element_text(family = "Roboto Condensed"),
+  ) +
+  plot_annotation(
+    caption = "Source: Stack Overflow Survey 2024",
+    theme = theme(
+      plot.caption = element_text(
+        size = 10,
+        hjust = 0,
+        margin = margin(t = -20),
+        color = "grey20",
+      ),
+      text = element_text(family = "Roboto Condensed"),
+    )
   )
 
 ggsave(
-  "plots/developer_age.svg",
+  here::here("projects", "project_0001", "developer_age.svg"),
   plot = p,
   width = 500,
   height = 320,

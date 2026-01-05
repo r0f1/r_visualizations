@@ -5,11 +5,24 @@ library(dplyr)
 library(ggplot2)
 library(readr)
 library(tidyr)
+library(patchwork)
 library(showtext)
+library(ggtext)
 
-font_add_google("Roboto", "roboto")
+sysfonts::font_add(
+  family = "Font Awesome 6 Brands",
+  regular = "fontawesome/otfs/Font Awesome 7 Brands-Regular-400.otf"
+)
+
+font_add_google("Roboto")
+font_add_google("Roboto Condensed")
 showtext_auto()
 showtext_opts(dpi = 100)
+
+social_caption <- glue::glue(
+  "<span style='font-family:\"Font Awesome 6 Brands\";'>&#xf09b; </span>",
+  "<span> r0f1</span>",
+)
 
 df <- read_csv(
   "data/data-kTk51.csv",
@@ -92,7 +105,8 @@ p <- ggplot(
     title = "Which issues do Americans say are important?",
     x = "Percentage",
     y = "",
-    fill = "Importance Level"
+    fill = "Importance Level",
+    caption = social_caption,
   ) +
   theme_minimal() +
   theme(
@@ -104,12 +118,28 @@ p <- ggplot(
     legend.box.margin = margin(l = -20),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.25)
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.25),
+    plot.caption = element_markdown(
+      size = 10,
+      color = "grey20",
+    ),
   ) +
-  guides(fill = guide_legend(reverse = TRUE))
+  guides(fill = guide_legend(reverse = TRUE)) +
+  plot_annotation(
+    caption = "Source: YouGov",
+    theme = theme(
+      plot.caption = element_text(
+        size = 10,
+        hjust = 0,
+        margin = margin(t = -15, l = 75),
+        color = "grey20",
+      ),
+      text = element_text(family = "Roboto Condensed"),
+    )
+  )
 
 ggsave(
-  "plots/american_sentiment.svg",
+  here::here("projects", "project_0002", "american_sentiment.svg"),
   plot = p,
   width = 720,
   height = 750,
