@@ -57,10 +57,10 @@ p <- ggplot(data, aes(x = Month, y = Questions)) +
   ) +
   annotate(
     "text",
-    x = raised,
+    x = raised + 500,
     y = max(data$Questions) * 0.8,
     label = "May 2010\nRaised $6 million",
-    hjust = 0.5,
+    hjust = 1,
     color = "grey20",
     size = 4,
     family = "Roboto Condensed",
