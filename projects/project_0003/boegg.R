@@ -14,10 +14,21 @@ library(tidyverse)
 library(lubridate)
 library(showtext)
 library(ggrepel)
+library(ggtext)
+
+sysfonts::font_add(
+  family = "Font Awesome 6 Brands",
+  regular = "fontawesome/otfs/Font Awesome 7 Brands-Regular-400.otf"
+)
 
 font_add_google("Roboto Condensed")
 showtext_opts(dpi = 100)
 showtext_auto()
+
+social_caption <- glue::glue(
+  "<span style='font-family:\"Font Awesome 6 Brands\";'>&#xf09b; </span>",
+  "<span> r0f1</span>",
+)
 
 # data_path <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-12-02/sechselaeuten.csv"
 data_path <- "data/sechselaeuten.csv"
@@ -91,9 +102,9 @@ p <- ggplot(df_model, aes(x = duration, y = actual)) +
   ) +
   labs(
     title = "Snowman Burn Duration and Average Temperatures (N=65)",
-    subtitle = "TidyTuesday 2025 / Week 48",
     x = "Snowman Burn Duration [mins]",
-    y = "Average Air Temperature 2m Above Ground [°C]"
+    y = "Average Air Temperature 2m Above Ground [°C]",
+    caption = social_caption,
   ) +
 
   coord_cartesian(clip = "off") +
@@ -119,21 +130,35 @@ p <- ggplot(df_model, aes(x = duration, y = actual)) +
     axis.line = element_line(linewidth = 0.25),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
+    plot.caption = element_markdown(
+      size = 10,
+      color = "grey20",
+    ),
     plot.margin = margin(15, 15, 15, 15),
     plot.title = element_text(
       face = "bold",
-      size = 16,
-      hjust = 0
-    ),
-    plot.subtitle = element_text(
-      margin = margin(b = 25)
+      size = 20,
+      hjust = 0,
+      margin = margin(b = 25),
     ),
     legend.position = "none",
     text = element_text(family = "Roboto Condensed"),
+  ) +
+  patchwork::plot_annotation(
+    caption = "Source: TidyTuesday 2025 / Week 48",
+    theme = theme(
+      plot.caption = element_text(
+        size = 10,
+        hjust = 0,
+        margin = margin(t = -25, l = 5),
+        color = "grey20",
+      ),
+      text = element_text(family = "Roboto Condensed"),
+    )
   )
 
 ggsave(
-  "plots/boegg.svg",
+  here::here("projects", "project_0003", "boegg.svg"),
   plot = p,
   width = 900,
   height = 900,
