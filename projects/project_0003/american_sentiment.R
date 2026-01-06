@@ -139,7 +139,7 @@ p <- ggplot(
   )
 
 ggsave(
-  here::here("projects", "project_0002", "american_sentiment.svg"),
+  here::here("projects", "project_0003", "american_sentiment.svg"),
   plot = p,
   width = 720,
   height = 750,

@@ -158,7 +158,7 @@ p <- ggplot(df_model, aes(x = duration, y = actual)) +
   )
 
 ggsave(
-  here::here("projects", "project_0003", "boegg.svg"),
+  here::here("projects", "project_0004", "boegg.svg"),
   plot = p,
   width = 900,
   height = 900,
