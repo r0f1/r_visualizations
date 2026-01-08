@@ -37,4 +37,6 @@ dependencies = [
     "ggrepel",
     "readr",
     "here",
+    "tidytuesdayR",
+    "ggExtra",
 ]
