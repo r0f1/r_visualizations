@@ -39,4 +39,5 @@ dependencies = [
     "here",
     "tidytuesdayR",
     "ggExtra",
+    "ggdist",
 ]

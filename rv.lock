@@ -585,6 +585,20 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "distributional"
+version = "0.5.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "vctrs", requirement = "(>= 0.3.0)" },
+    { name = "rlang", requirement = "(>= 0.4.5)" },
+    "generics",
+    "numDeriv",
+    "lifecycle",
+    "pillar",
+]
+
+[[packages]]
 name = "doBy"
 version = "4.7.1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -848,6 +862,27 @@ source = { git = "https://github.com/hrbrmstr/ggchicklet/", sha = "64c468dd09001
 force_source = true
 dependencies = [
     "ggplot2",
+]
+
+[[packages]]
+name = "ggdist"
+version = "3.3.3"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 3.5.0)" },
+    "scales",
+    { name = "rlang", requirement = "(>= 0.3.0)" },
+    "cli",
+    "tibble",
+    "vctrs",
+    "withr",
+    "glue",
+    "gtable",
+    { name = "distributional", requirement = "(>= 0.3.2)" },
+    "numDeriv",
+    "quadprog",
+    "Rcpp",
 ]
 
 [[packages]]
