@@ -25,23 +25,36 @@ social_caption <- glue::glue(
 
 # Samples collected by Michigan Dept of Environment
 flint_mdeq <- readr::read_csv("data/flint_mdeq.csv") |>
-  mutate(removed = !is.na(notes), source = "Environment Dept") |>
+  mutate(removed = !is.na(notes), source = "ENV") |>
   select(lead, removed, source)
+
+flint_mdeq_rem <- readr::read_csv("data/flint_mdeq.csv") |>
+  mutate(removed = 0, source = "ENV REMOVED") |>
+  select(lead2, removed, source) |>
+  drop_na() |>
+  rename(lead = lead2)
 
 # Samples collected by Viginia Tech
 flint_vt <- readr::read_csv("data/flint_vt.csv") |>
-  mutate(removed = 0, source = "Viginia Tech") |>
+  mutate(removed = 0, source = "VT") |>
   select(lead, removed, source)
 
-data <- bind_rows(flint_mdeq, flint_vt) |>
+data <- bind_rows(flint_mdeq, flint_mdeq_rem, flint_vt)
+
+quantile_90 <- data |>
+  group_by(source) |>
+  summarise(q90 = quantile(lead, 0.90), .groups = "drop") |>
+  mutate(group_id = source)
+
+data <- data |>
+  filter(source %in% c("ENV", "VT")) |>
   mutate(source = factor(source), removed = factor(removed))
 
 removed_obs <- data |> filter(removed == 1)
 
-quantile_90 <- data |>
-  group_by(source, removed) |>
-  summarise(q90 = quantile(lead, 0.90), .groups = "drop") |>
-  mutate(group_id = paste(source, removed, sep = "_"))
+q_ok = 18
+q_not_ok = 11.4
+q_vt = 26.6
 
 arrow_data <- tibble(
   x = c(104, 104),
@@ -64,21 +77,56 @@ arrow_data2 <- tibble(
 
 p <- ggplot(data, aes(x = lead, y = fct_rev(source), color = removed)) +
   geom_swarm(alpha = 0.85, dotsize = 0.75, shape = 19) +
-  stat_summary(
-    fun = function(x) quantile(x, 0.90),
-    geom = "crossbar",
-    width = 0.25,
+  geom_segment(
+    x = q_ok,
+    xend = q_ok,
+    y = 2 + 0.125,
+    yend = 2 - 0.125,
+    color = "blue",
     size = 0.5,
-    aes(color = interaction(source, removed))
+    inherit.aes = FALSE
   ) +
   geom_text(
-    data = quantile_90,
-    aes(
-      x = q90,
-      y = fct_rev(source),
-      label = round(q90, 1),
-      color = interaction(source, removed)
-    ),
+    x = q_ok,
+    y = 2 + 0.125,
+    label = q_ok,
+    color = "blue",
+    vjust = -4,
+    size = 3,
+    show.legend = FALSE
+  ) +
+  geom_segment(
+    x = q_not_ok,
+    xend = q_not_ok,
+    y = 2 + 0.125,
+    yend = 2 - 0.125,
+    color = "red",
+    size = 0.5,
+    inherit.aes = FALSE
+  ) +
+  geom_text(
+    x = q_not_ok,
+    y = 2 + 0.125,
+    label = q_not_ok,
+    color = "red",
+    vjust = -4,
+    size = 3,
+    show.legend = FALSE
+  ) +
+  geom_segment(
+    x = q_vt,
+    xend = q_vt,
+    y = 1 + 0.125,
+    yend = 1 - 0.125,
+    color = "green",
+    size = 0.5,
+    inherit.aes = FALSE
+  ) +
+  geom_text(
+    x = q_vt,
+    y = 1 + 0.125,
+    label = q_vt,
+    color = "green",
     vjust = -4,
     size = 3,
     show.legend = FALSE
