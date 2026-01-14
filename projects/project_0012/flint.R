@@ -53,7 +53,7 @@ data <- data |>
     source = factor(
       source,
       levels = c("ENV", "VT"),
-      labels = c("MDEQ", "Virinia Tech")
+      labels = c("MDEQ", "Virginia Tech")
     ),
     removed = factor(removed),
     color_group = paste(source, removed, sep = ".")
@@ -238,7 +238,7 @@ p <- ggplot(data, aes(x = lead, y = fct_rev(source), color = color_group)) +
     "text",
     x = 40,
     y = 0.75,
-    label = "Analysis by Virinia Tech University\nrevealed that even more homes\nhad highly contaminated water.",
+    label = "Analysis by Virginia Tech University\nrevealed that even more homes\nhad highly contaminated water.",
     hjust = 0,
     size = 3.5,
     color = "black"
@@ -248,7 +248,7 @@ p <- ggplot(data, aes(x = lead, y = fct_rev(source), color = color_group)) +
     values = c(
       "MDEQ.0" = "#1D4E89",
       "MDEQ.1" = "#D72638",
-      "Virinia Tech.0" = "#F79256"
+      "Virginia Tech.0" = "#F79256"
     )
   ) +
   scale_x_continuous(
