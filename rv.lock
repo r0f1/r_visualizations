@@ -896,6 +896,22 @@ dependencies = [
 ]
 
 [[packages]]
+name = "gghighlight"
+version = "0.5.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 3.3.6)" },
+    { name = "dplyr", requirement = "(>= 1.0.4)" },
+    "ggrepel",
+    "lifecycle",
+    "purrr",
+    "rlang",
+    "tibble",
+    "scales",
+]
+
+[[packages]]
 name = "ggnewscale"
 version = "0.5.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
