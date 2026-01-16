@@ -27,9 +27,10 @@ fire <- farff::readARFF("data/Acoustic_Extinguisher_Fire_Dataset.arff")
 data <- fire |>
   mutate(
     CLASS = factor(CLASS),
-    DISTANCE = cut(DISTANCE, breaks = seq(0, 200, by = 20)),
-    FREQUENCY = cut(FREQUENCY, breaks = seq(0, 80, by = 10)),
+    DISTANCE = cut(DISTANCE, breaks = c(seq(0, 160, by = 20), 190)),
+    FREQUENCY = cut(FREQUENCY, breaks = c(seq(0, 60, by = 10), 75)),
   )
+
 percentages <- data |>
   group_by(DISTANCE, FREQUENCY) |>
   summarise(
@@ -37,16 +38,97 @@ percentages <- data |>
     .groups = "drop"
   )
 
-ggplot(data, aes(DISTANCE, FREQUENCY, color = CLASS)) +
+color_background = "#f4f1f1"
+
+p <- ggplot(data, aes(FREQUENCY, DISTANCE, color = CLASS)) +
   geom_point(
-    size = 0.75,
-    position = position_jitter()
+    size = 0.5,
+    alpha = 0.5,
+    position = position_jitter(),
   ) +
-  geom_text(
+  scale_color_manual(values = c("#B62203", "#0071d4")) +
+  shadowtext::geom_shadowtext(
     data = percentages,
-    aes(x = DISTANCE, y = FREQUENCY, label = sprintf("%.1f%%", pct_class1)),
+    aes(FREQUENCY, DISTANCE, label = sprintf("%.1f%%", pct_class1)),
+    bg.color = color_background,
+    bg.r = 0.25,
     color = "black",
-    size = 3,
     inherit.aes = FALSE,
-    family = "Roboto Condensed"
+    family = "Roboto",
+    fontface = "bold",
+    size = 4,
+  ) +
+  labs(
+    title = "Extinguishing Fire With Sound Waves",
+    subtitle = stringr::str_wrap(
+      "Points represent experiments (N = 17442) testing an acoustic fire extinguisher emitting varying frequencies at different distances from the fire source.",
+      width = 80,
+    ),
+    x = "Emitted Sound Frequency [Hz]",
+    y = stringr::str_wrap("Distance from the fire source [cm]", width = 20),
+    caption = social_caption,
+  ) +
+  coord_cartesian(clip = "off") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(
+      size = 11,
+      color = "black",
+    ),
+    axis.title.x = element_text(
+      hjust = 0.95,
+      margin = margin(t = 15),
+    ),
+    axis.title.y = element_text(
+      vjust = 1.05,
+      hjust = 0,
+      margin = margin(r = -80),
+      angle = 0,
+    ),
+    panel.background = element_rect(fill = color_background, color = NA),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    plot.background = element_rect(fill = color_background, color = NA),
+    plot.caption = ggtext::element_markdown(
+      size = 10,
+      color = "grey40",
+      margin = margin(t = 15),
+      family = "Roboto",
+    ),
+    plot.margin = margin(15, 15, 15, 15),
+    plot.title = element_text(
+      size = 20,
+      margin = margin(l = -45, b = 5),
+    ),
+    plot.subtitle = element_text(
+      size = 12,
+      color = "grey20",
+      margin = margin(l = -45, b = 40),
+      lineheight = 1.1,
+    ),
+    legend.position = "none",
+    text = element_text(
+      family = "Roboto Condensed",
+    ),
+  ) +
+  patchwork::plot_annotation(
+    caption = "Source: Koklu & Tastinar (2021)",
+    theme = theme(
+      plot.caption = element_text(
+        size = 10,
+        hjust = 0,
+        margin = margin(t = -25, l = 5),
+        color = "grey40",
+      ),
+      text = element_text(family = "Roboto Condensed"),
+    )
   )
+
+ggsave(
+  here::here("projects", "project_0014", "fire.svg"),
+  plot = p,
+  width = 650,
+  height = 900,
+  units = "px",
+  dpi = 100,
+)

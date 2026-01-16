@@ -42,4 +42,7 @@ dependencies = [
     "ggdist",
     "gghighlight",
     "farff",
+    "shadowtext",
+    "ggfx",
+    "magick",
 ]
