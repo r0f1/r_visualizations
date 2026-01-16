@@ -4,6 +4,16 @@ version = 2
 r_version = "4.5"
 
 [[packages]]
+name = "BBmisc"
+version = "1.13"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "checkmate", requirement = "(>= 1.8.0)" },
+    "data.table",
+]
+
+[[packages]]
 name = "DBI"
 version = "1.2.3"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -687,6 +697,18 @@ version = "0.8-35"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
+
+[[packages]]
+name = "farff"
+version = "1.1.1"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "BBmisc",
+    { name = "checkmate", requirement = "(>= 1.8.0)" },
+    { name = "readr", requirement = "(>= 1.0.0)" },
+    "stringi",
+]
 
 [[packages]]
 name = "farver"
