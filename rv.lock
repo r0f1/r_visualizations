@@ -944,19 +944,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "ggfx"
-version = "1.0.3"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "magick", requirement = "(>= 2.7.1)" },
-    "ragg",
-    "ggplot2",
-    "gtable",
-    "rlang",
-]
-
-[[packages]]
 name = "gghalves"
 version = "0.1.4"
 source = { git = "https://github.com/erocoar/gghalves/", sha = "e5c3c79e79f13a00795a2a7774794252d1980d86" }
@@ -964,22 +951,6 @@ force_source = true
 dependencies = [
     { name = "ggplot2", requirement = "(>= 3.3.6)" },
     "gtable",
-]
-
-[[packages]]
-name = "gghighlight"
-version = "0.5.0"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "ggplot2", requirement = "(>= 3.3.6)" },
-    { name = "dplyr", requirement = "(>= 1.0.4)" },
-    "ggrepel",
-    "lifecycle",
-    "purrr",
-    "rlang",
-    "tibble",
-    "scales",
 ]
 
 [[packages]]
@@ -1555,17 +1526,6 @@ force_source = false
 dependencies = [
     "generics",
     { name = "timechange", requirement = "(>= 0.3.0)" },
-]
-
-[[packages]]
-name = "magick"
-version = "2.9.0"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = [
-    { name = "Rcpp", requirement = "(>= 0.12.12)" },
-    "magrittr",
-    "curl",
 ]
 
 [[packages]]
