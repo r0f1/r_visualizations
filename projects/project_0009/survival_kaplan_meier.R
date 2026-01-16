@@ -235,7 +235,7 @@ p2 <- ggplot(
     panel.grid = element_blank(),
     plot.caption = ggtext::element_markdown(
       size = 10,
-      color = "grey20",
+      color = "grey40",
     ),
     plot.title = element_text(
       family = "Roboto Condensed",
@@ -256,7 +256,7 @@ final_plot = p1 /
         size = 10,
         hjust = 0,
         margin = margin(t = -13, l = 5),
-        color = "grey20",
+        color = "grey40",
       ),
       text = element_text(family = "Roboto Condensed"),
     )
@@ -264,7 +264,7 @@ final_plot = p1 /
 
 
 ggsave(
-  here::here("projects", "project_0009", "survival_kaplan_meier.svg"),
+  here::here("projects", "project_0009", "survival_kaplan_meier.png"),
   plot = final_plot,
   width = 800,
   height = 700,

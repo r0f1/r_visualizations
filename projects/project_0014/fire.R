@@ -125,7 +125,7 @@ p <- ggplot(data, aes(FREQUENCY, DISTANCE, color = CLASS)) +
   )
 
 ggsave(
-  here::here("projects", "project_0014", "fire.svg"),
+  here::here("projects", "project_0014", "fire.png"),
   plot = p,
   width = 650,
   height = 900,
