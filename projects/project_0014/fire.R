@@ -88,7 +88,10 @@ p <- ggplot(data, aes(FREQUENCY, DISTANCE, color = CLASS)) +
     panel.background = element_rect(fill = color_background, color = NA),
     panel.grid.minor = element_blank(),
     panel.grid.major = element_blank(),
-    plot.background = element_rect(fill = color_background, color = NA),
+    plot.background = element_rect(
+      fill = color_background,
+      color = color_background,
+    ),
     plot.caption = ggtext::element_markdown(
       size = 10,
       color = "grey40",

@@ -149,7 +149,10 @@ p <- ggplot(
             color = "grey30",
             size = 0.25
         ),
-        plot.background = element_rect(fill = color_background, color = NA),
+        plot.background = element_rect(
+            fill = color_background,
+            color = color_background,
+        ),
         plot.caption = ggtext::element_markdown(
             size = 10,
             color = "grey40",
