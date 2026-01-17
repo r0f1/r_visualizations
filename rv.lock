@@ -1954,6 +1954,13 @@ dependencies = [
 ]
 
 [[packages]]
+name = "qatarcars"
+version = "1.0.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
 name = "quadprog"
 version = "1.5-8"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
