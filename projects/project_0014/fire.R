@@ -85,7 +85,10 @@ p <- ggplot(data, aes(FREQUENCY, DISTANCE, color = CLASS)) +
       margin = margin(r = -80),
       angle = 0,
     ),
-    panel.background = element_rect(fill = color_background, color = NA),
+    panel.background = element_rect(
+      fill = color_background,
+      color = color_background,
+    ),
     panel.grid.minor = element_blank(),
     panel.grid.major = element_blank(),
     plot.background = element_rect(
@@ -117,6 +120,10 @@ p <- ggplot(data, aes(FREQUENCY, DISTANCE, color = CLASS)) +
   patchwork::plot_annotation(
     caption = "Source: Koklu & Tastinar (2021)",
     theme = theme(
+      plot.background = element_rect(
+        fill = color_background,
+        color = color_background
+      ),
       plot.caption = element_text(
         size = 10,
         hjust = 0,

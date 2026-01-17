@@ -141,7 +141,10 @@ p <- ggplot(
             size = 11,
             color = "grey10",
         ),
-        panel.background = element_rect(fill = color_background, color = NA),
+        panel.background = element_rect(
+            fill = color_background,
+            color = color_background,
+        ),
         panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
         panel.grid.major.y = element_line(
@@ -180,6 +183,10 @@ p <- ggplot(
     patchwork::plot_annotation(
         caption = "Source: TidyTuesday 2023 / Week 7",
         theme = theme(
+            plot.background = element_rect(
+                fill = color_background,
+                color = color_background
+            ),
             plot.caption = element_text(
                 size = 10,
                 hjust = 0,
