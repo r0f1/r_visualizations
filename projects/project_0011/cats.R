@@ -1,6 +1,8 @@
 # Source
 # https://github.com/rfordatascience/tidytuesday/tree/main/data/2023/2023-01-31
 
+set.seed(4)
+
 library(tidyr)
 library(dplyr)
 library(ggplot2)
@@ -13,7 +15,8 @@ sysfonts::font_add(
   family = "Font Awesome 6 Brands",
   regular = "fontawesome/otfs/Font Awesome 7 Brands-Regular-400.otf"
 )
-font_add_google("Crimson Pro")
+font_add_google("Roboto")
+font_add_google("Roboto Condensed")
 showtext_auto()
 showtext_opts(dpi = 100)
 
@@ -24,7 +27,9 @@ social_caption <- glue::glue(
 
 # df <- tidytuesdayR::tt_load(2023, week = 5)$cats_uk_reference
 
-df <- readr::read_csv("data/cats.csv") |>
+cats <- readr::read_csv("data/cats.csv")
+
+df <- cats |>
   select(age_years, hrs_indoors, n_cats, animal_sex) |>
   mutate(animal_sex = factor(animal_sex), hrs_indoors = factor(hrs_indoors)) |>
   drop_na()
@@ -34,9 +39,18 @@ rect_data <- data.frame(
   ymin = seq(0.5, n_levels - 0.5, by = 2),
   ymax = seq(1.5, n_levels + 0.5, by = 2)
 )
+# sex_colors <- c("m" = "#4A90E2", "f" = "#E94B8A")
 
 p <- ggplot(df, aes(x = age_years, y = hrs_indoors)) +
-  geom_beeswarm(alpha = 0.85, size = 1.5, cex = 1.95) +
+  geom_beeswarm(
+    alpha = 0.85,
+    size = 1.5,
+    cex = 1.95,
+  ) +
+  scale_x_continuous(
+    breaks = seq(0, 16, by = 2),
+  ) +
+  # scale_color_manual(values = sex_colors) +
   labs(
     x = "Age",
     y = "",
@@ -44,19 +58,15 @@ p <- ggplot(df, aes(x = age_years, y = hrs_indoors)) +
     title = "How much time do cats spend indoors?",
     caption = social_caption,
   ) +
-  scale_x_continuous(
-    breaks = seq(0, 16, by = 2),
-  ) +
+  coord_cartesian(clip = "off") +
   theme_minimal() +
   theme(
-    axis.text.x = element_text(size = 12),
-    axis.text.y = element_text(size = 12),
+    axis.text = element_text(size = 10),
     axis.title.x = element_text(
-      size = 12,
+      size = 11,
       margin = margin(t = 10, b = 20),
     ),
     panel.grid.minor = element_blank(),
-    # panel.grid.major.x = element_blank(),
     panel.grid.major.x = element_line(
       linetype = "dashed",
       color = "grey20",
@@ -69,18 +79,19 @@ p <- ggplot(df, aes(x = age_years, y = hrs_indoors)) +
     ),
     plot.caption = element_markdown(
       size = 10,
-      color = "grey20",
+      color = "grey40",
     ),
     plot.margin = margin(t = 15, r = 15, b = 0, l = 15),
-    plot.tag = element_text(size = 12, hjust = 0),
+    plot.tag = element_text(size = 11, hjust = 0),
     plot.tag.position = c(-0.0075, 0.89),
     plot.title = element_text(
       face = "bold",
       size = 18,
       hjust = 0,
-      margin = margin(b = 50, l = -40)
+      margin = margin(b = 50, l = -42)
     ),
-    text = element_text(family = "Crimson Pro"),
+    legend.position = "none",
+    text = element_text(family = "Roboto"),
   ) +
   plot_annotation(
     caption = "Data: McDonald JL, Cole H (2020)",
@@ -89,9 +100,9 @@ p <- ggplot(df, aes(x = age_years, y = hrs_indoors)) +
         size = 10,
         hjust = 0,
         margin = margin(t = -10, l = -3),
-        color = "grey20",
+        color = "grey40",
       ),
-      text = element_text(family = "Crimson Pro"),
+      text = element_text(family = "Roboto Condensed"),
     )
   )
 

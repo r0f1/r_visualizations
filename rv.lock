@@ -944,6 +944,28 @@ dependencies = [
 ]
 
 [[packages]]
+name = "ggforce"
+version = "0.5.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 3.5.0)" },
+    "scales",
+    "MASS",
+    { name = "tweenr", requirement = "(>= 0.1.5)" },
+    "gtable",
+    "rlang",
+    "polyclip",
+    "tidyselect",
+    "withr",
+    "lifecycle",
+    "cli",
+    "vctrs",
+    "systemfonts",
+    "cpp11",
+]
+
+[[packages]]
 name = "gghalves"
 version = "0.1.4"
 source = { git = "https://github.com/erocoar/gghalves/", sha = "e5c3c79e79f13a00795a2a7774794252d1980d86" }
@@ -1829,6 +1851,13 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "polyclip"
+version = "1.10-7"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
 name = "polynom"
 version = "1.4-1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -2625,6 +2654,19 @@ dependencies = [
     "zoo",
     { name = "quantmod", requirement = "(>= 0.4-9)" },
     "jsonlite",
+]
+
+[[packages]]
+name = "tweenr"
+version = "2.0.3"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "farver",
+    "magrittr",
+    "rlang",
+    "vctrs",
+    { name = "cpp11", requirement = "(>= 0.4.2)" },
 ]
 
 [[packages]]
