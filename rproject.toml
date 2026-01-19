@@ -45,4 +45,7 @@ dependencies = [
     "ggforce",
     "qatarcars",
     { name = "ggmap", git = "https://github.com/dkahle/ggmap/", commit = "4cdb1fb9b1c2c800f87acbc63dbc5896347f27be"},
+    "ggpointdensity",
+    "viridis",
+    "RColorBrewer",
 ]

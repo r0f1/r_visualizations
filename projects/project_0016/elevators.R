@@ -1,7 +1,6 @@
-# Source
-# https://github.com/rfordatascience/tidytuesday/tree/main/data/2022/2022-12-06
-
 library(tidyverse)
+library(ggmap)
+library(gridExtra)
 library(showtext)
 
 sysfonts::font_add(
@@ -13,63 +12,150 @@ font_add_google("Roboto Condensed")
 showtext_auto()
 showtext_opts(dpi = 100)
 
-social_caption <- glue::glue(
-  "<span style='font-family:\"Font Awesome 6 Brands\";'>&#xf09b; </span>",
-  "<span> r0f1</span>",
-)
+elevators <- read_csv("data/elevators.csv")
 
-# elevators <- readr::read_csv(
-#   'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2022/2022-12-06/elevators.csv'
-# )
-
-elevators <- readr::read_csv("data/elevators.csv")
-
-map_file <- "data/nyc_map.rds"
-
-if (file.exists(map_file)) {
-  nyc_map <- readRDS(map_file)
+maps <- paste0("data/nyc_map", 1:5, ".rds")
+if (all(file.exists(maps))) {
+  map_list <- lapply(maps, readRDS)
 } else {
-  key <- "YOUR_API_KEY"
-  ggmap::register_stadiamaps(key)
-  nyc_map <- ggmap::get_stadiamap(
-    bbox = c(left = -74.3, bottom = 40.49, right = -73.7, top = 40.92),
-    zoom = 12,
-    maptype = "alidade_smooth"
+  ggmap::register_stadiamaps(Sys.getenv("STADIAMAPS_KEY"))
+  bboxes <- list(
+    c(-74.022, 40.697, -73.907, 40.882), # Manhattan
+    c(-73.94, 40.79, -73.77, 40.915), # Bronx
+    c(-74.05, 40.56, -73.83, 40.745), # Brooklyn
+    c(-73.963, 40.54, -73.70, 40.80), # Queens
+    c(-74.26, 40.49, -74.05, 40.652) # Staten Island
   )
-  saveRDS(nyc_map, map_file)
+
+  # Calculate width and height for each bbox
+  widths <- sapply(bboxes, \(b) b[3] - b[1])
+  heights <- sapply(bboxes, \(b) b[4] - b[2])
+
+  max_width <- max(widths)
+  max_height <- max(heights)
+
+  # Adjust bboxes to have uniform dimensions
+  bboxes <- lapply(bboxes, \(b) {
+    current_width <- b[3] - b[1]
+    current_height <- b[4] - b[2]
+    center_long <- (b[1] + b[3]) / 2
+    center_lat <- (b[2] + b[4]) / 2
+
+    c(
+      center_long - max_width / 2, # left
+      center_lat - max_height / 2, # bottom
+      center_long + max_width / 2, # right
+      center_lat + max_height / 2 # top
+    )
+  })
+
+  offset = 0.02
+  bboxes[[1]] <- c(
+    -74.022 - offset,
+    40.697 - offset,
+    -73.907 + offset,
+    40.882 + offset
+  )
+
+  map_list <- lapply(bboxes, \(b) {
+    get_stadiamap(
+      bbox = c(left = b[1], bottom = b[2], right = b[3], top = b[4]),
+      zoom = if (b[1] == -74.022 - offset) 13 else 11,
+      maptype = "stamen_toner_lines",
+    )
+  })
+  mapply(saveRDS, map_list, maps)
 }
 
 data <- elevators |>
   filter(LONGITUDE > -77) |>
   select(Borough, LATITUDE, LONGITUDE) |>
   drop_na() |>
-  rename(c(long = LONGITUDE, lat = LATITUDE))
+  rename(long = LONGITUDE, lat = LATITUDE)
+
+boroughs <- c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island")
 
 
-# Plot the map with your points
-ggmap::ggmap(nyc_map) +
-  geom_point(
-    data = data,
-    aes(x = long, y = lat, color = Borough),
-    alpha = 0.7,
-    size = 2
+plots <- map2(map_list, boroughs, \(m, b) {
+  borough_data <- filter(data, Borough == b)
+  n_elevators <- nrow(borough_data)
+
+  margin_axis_text <- case_when(
+    b == "Manhattan" ~ 10,
+    b == "Bronx" ~ 5,
+    b == "Brooklyn" ~ 1,
+    b == "Queens" ~ 1,
+    b == "Staten Island" ~ 4
+  )
+  ggmap(m) +
+    geom_bin2d(
+      data = borough_data,
+      aes(long, lat),
+      binwidth = c(0.0012 * 2, 0.0009 * 2),
+      alpha = 0.9,
+    ) +
+    scale_fill_distiller(
+      palette = "YlGnBu",
+      direction = 1,
+      limits = c(0, 100),
+      oob = scales::squish,
+      name = "Elevators    ",
+      labels = function(x) ifelse(x == 100, "100+", x)
+    ) +
+    geom_label(
+      x = Inf,
+      y = -Inf,
+      label = paste0(
+        "N = ",
+        format(n_elevators, big.mark = ".", scientific = FALSE)
+      ),
+      hjust = 1.1,
+      vjust = if (b == "Manhattan") -0.4 else -0.6,
+      fill = "white",
+      label.size = 0,
+      size = if (b == "Manhattan") 4.5 else 3.5,
+    ) +
+    labs(x = b, y = "") +
+    theme_minimal() +
+    theme(
+      axis.text = element_blank(),
+      axis.title.x = element_text(
+        margin = margin(t = margin_axis_text)
+      ),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      legend.position = if (b == "Manhattan") c(0.05, 0.92) else "none",
+      legend.justification = c(0, 0),
+      legend.direction = "horizontal",
+      legend.background = element_rect(fill = "white", color = NA),
+      plot.margin = margin(b = 10),
+      text = element_text(family = "Roboto"),
+    )
+})
+
+text_plot <- ggplot() +
+  xlim(-1, 1) +
+  ylim(-1, 1) +
+  annotate(
+    "text",
+    x = -1,
+    y = 0,
+    label = "Elevators\nof New York",
+    hjust = 0,
+    size = 7,
+    fontface = "bold",
   ) +
-  labs(title = "New York Locations by Type", color = "Type") +
-  theme_minimal()
+  coord_cartesian(clip = "off") +
+  theme_void() +
+  theme(plot.margin = margin(0, 0, 0, 0))
 
-# ggplot() +
-#   geom_polygon(
-#     data = maps::map_data("county"),
-#     aes(x = long, y = lat, group = group),
-#     fill = "gray90",
-#     color = "white"
-#   ) +
-#   geom_point(
-#     data = data,
-#     aes(x = long, y = lat, color = Borough),
-#     alpha = 0.7,
-#     size = 2
-#   ) +
-#   theme_minimal() +
-#   labs(title = "Locations by Type", color = "Type") +
-#   coord_fixed(1.3, xlim = c(-74.3, -73.7), ylim = c(40.5, 40.9))
+library(patchwork)
+
+# After creating plots and text_plot:
+layout <- (plots[[2]] / plots[[3]] / plots[[4]] / plots[[5]] / text_plot) |
+  (plots[[1]])
+
+
+layout +
+  plot_layout(widths = c(0.3, 0.7)) +
+  theme(plot.margin = margin(15, 30, 15, 30))
