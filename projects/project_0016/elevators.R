@@ -80,6 +80,18 @@ plots <- map2(map_list, boroughs, \(m, b) {
   borough_data <- filter(data, Borough == b)
   n_elevators <- nrow(borough_data)
 
+  if (b == "Manhattan") {
+    bin_data <- ggplot_build(
+      ggplot(borough_data, aes(long, lat)) +
+        geom_bin2d(binwidth = c(0.0012 * 2, 0.0009 * 2))
+    )$data[[1]]
+
+    top_5_bins <- bin_data |>
+      arrange(desc(count)) |>
+      slice(1:5) |>
+      select(x, y, count)
+  }
+
   margin_axis_text <- case_when(
     b == "Manhattan" ~ 10,
     b == "Bronx" ~ 5,
@@ -92,16 +104,46 @@ plots <- map2(map_list, boroughs, \(m, b) {
       data = borough_data,
       aes(long, lat),
       binwidth = c(0.0012 * 2, 0.0009 * 2),
+      alpha = 0.75,
+    ) +
+    scale_fill_viridis_b(
       alpha = 0.9,
-    ) +
-    scale_fill_distiller(
-      palette = "YlGnBu",
-      direction = 1,
-      limits = c(0, 100),
+      breaks = c(0, 10, 20, 50, 100, 200, 500),
+      # guide = guide_coloursteps(label.vjust = -0.5),
+      name = "Elevators",
+      labels = function(x) ifelse(x == 500, "", x),
+      limits = c(0, 500),
       oob = scales::squish,
-      name = "Elevators    ",
-      labels = function(x) ifelse(x == 100, "100+", x)
+      option = "plasma",
     ) +
+    {
+      if (b == "Manhattan") {
+        geom_segment(
+          x = top_5_bins[1, "x"],
+          xend = top_5_bins[1, "x"] - 0.01,
+          y = top_5_bins[1, "y"],
+          yend = top_5_bins[1, "y"] + 0.01,
+          label = top_5_bins[1, "count"],
+          arrow = arrow(length = unit(0.2, "cm")),
+          color = "grey10",
+          size = 0.8
+        )
+      }
+    } +
+    {
+      if (b == "Manhattan") {
+        geom_label(
+          x = top_5_bins[1, "x"] - 0.01,
+          y = top_5_bins[1, "y"] + 0.01,
+          label = top_5_bins[1, "count"],
+          hjust = 1,
+          vjust = 0,
+          size = 3,
+          color = "red",
+          fill = "white"
+        )
+      }
+    } +
     geom_label(
       x = Inf,
       y = -Inf,
@@ -124,10 +166,10 @@ plots <- map2(map_list, boroughs, \(m, b) {
       ),
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      legend.position = if (b == "Manhattan") c(0.05, 0.92) else "none",
-      legend.justification = c(0, 0),
-      legend.direction = "horizontal",
       legend.background = element_rect(fill = "white", color = NA),
+      legend.justification = c(0, 0),
+      legend.position = if (b == "Manhattan") c(0.05, 0.8) else "none",
+      legend.title = element_text(margin = margin(b = 10)),
       plot.margin = margin(b = 10),
       text = element_text(family = "Roboto"),
     )
