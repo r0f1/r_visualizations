@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggmap)
 library(gridExtra)
 library(showtext)
+library(patchwork)
 
 sysfonts::font_add(
   family = "Font Awesome 6 Brands",
@@ -11,6 +12,11 @@ font_add_google("Roboto")
 font_add_google("Roboto Condensed")
 showtext_auto()
 showtext_opts(dpi = 100)
+
+social_caption <- glue::glue(
+  "<span style='font-family:\"Font Awesome 6 Brands\";'>&#xf09b; </span>",
+  "<span> r0f1</span>",
+)
 
 elevators <- read_csv("data/elevators.csv")
 
@@ -94,10 +100,10 @@ plots <- map2(map_list, boroughs, \(m, b) {
 
   margin_axis_text <- case_when(
     b == "Manhattan" ~ 10,
-    b == "Bronx" ~ 5,
-    b == "Brooklyn" ~ 1,
-    b == "Queens" ~ 1,
-    b == "Staten Island" ~ 4
+    b == "Bronx" ~ 2,
+    b == "Brooklyn" ~ 2,
+    b == "Queens" ~ 2,
+    b == "Staten Island" ~ 2
   )
   ggmap(m) +
     geom_bin2d(
@@ -109,41 +115,12 @@ plots <- map2(map_list, boroughs, \(m, b) {
     scale_fill_viridis_b(
       alpha = 0.9,
       breaks = c(0, 10, 20, 50, 100, 200, 500),
-      # guide = guide_coloursteps(label.vjust = -0.5),
-      name = "Elevators",
+      name = "",
       labels = function(x) ifelse(x == 500, "", x),
       limits = c(0, 500),
       oob = scales::squish,
       option = "plasma",
     ) +
-    {
-      if (b == "Manhattan") {
-        geom_segment(
-          x = top_5_bins[1, "x"],
-          xend = top_5_bins[1, "x"] - 0.01,
-          y = top_5_bins[1, "y"],
-          yend = top_5_bins[1, "y"] + 0.01,
-          label = top_5_bins[1, "count"],
-          arrow = arrow(length = unit(0.2, "cm")),
-          color = "grey10",
-          size = 0.8
-        )
-      }
-    } +
-    {
-      if (b == "Manhattan") {
-        geom_label(
-          x = top_5_bins[1, "x"] - 0.01,
-          y = top_5_bins[1, "y"] + 0.01,
-          label = top_5_bins[1, "count"],
-          hjust = 1,
-          vjust = 0,
-          size = 3,
-          color = "red",
-          fill = "white"
-        )
-      }
-    } +
     geom_label(
       x = Inf,
       y = -Inf,
@@ -191,13 +168,40 @@ text_plot <- ggplot() +
   theme_void() +
   theme(plot.margin = margin(0, 0, 0, 0))
 
-library(patchwork)
 
-# After creating plots and text_plot:
 layout <- (plots[[2]] / plots[[3]] / plots[[4]] / plots[[5]] / text_plot) |
   (plots[[1]])
 
-
-layout +
+p <- layout +
   plot_layout(widths = c(0.3, 0.7)) +
-  theme(plot.margin = margin(15, 30, 15, 30))
+  labs(
+    caption = social_caption,
+  ) +
+  theme(
+    plot.margin = margin(15, 30, 15, 30),
+    plot.caption = ggtext::element_markdown(
+      size = 10,
+      color = "grey40",
+    ),
+  ) +
+  patchwork::plot_annotation(
+    caption = "Source: R package {elevators} by emilhvitfeldt",
+    theme = theme(
+      plot.caption = element_text(
+        size = 10,
+        hjust = 0,
+        margin = margin(t = -25, l = 5),
+        color = "grey40",
+      ),
+      text = element_text(family = "Roboto Condensed"),
+    )
+  )
+
+ggsave(
+  here::here("projects", "project_0016", "elevators.png"),
+  plot = p,
+  width = 850,
+  height = 1000,
+  units = "px",
+  dpi = 100,
+)
