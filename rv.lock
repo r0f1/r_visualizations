@@ -973,6 +973,22 @@ dependencies = [
 ]
 
 [[packages]]
+name = "ggh4x"
+version = "0.3.1.9000"
+source = { git = "https://github.com/teunbrand/ggh4x/", sha = "63c91b78676eb005ac948fe3498fea5d29013539" }
+force_source = true
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 4.0.0)" },
+    "gtable",
+    "scales",
+    { name = "vctrs", requirement = "(>= 0.5.0)" },
+    { name = "rlang", requirement = "(>= 1.1.0)" },
+    "lifecycle",
+    "cli",
+    "S7",
+]
+
+[[packages]]
 name = "gghalves"
 version = "0.1.4"
 source = { git = "https://github.com/erocoar/gghalves/", sha = "e5c3c79e79f13a00795a2a7774794252d1980d86" }
@@ -1524,6 +1540,21 @@ version = "0.2.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
+
+[[packages]]
+name = "legendry"
+version = "0.2.4"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "ggplot2", requirement = "(>= 3.5.2)" },
+    "cli",
+    "gtable",
+    "lifecycle",
+    { name = "rlang", requirement = "(>= 1.1.0)" },
+    { name = "scales", requirement = "(>= 1.1.1)" },
+    { name = "vctrs", requirement = "(>= 0.6.0)" },
+]
 
 [[packages]]
 name = "lifecycle"
