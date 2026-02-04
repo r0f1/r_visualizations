@@ -28,6 +28,7 @@ data <- sunscreens |>
     Product_Name = factor(Product_Name),
     Claimed_SPF = factor(Claimed_SPF),
     Meets_Claim = factor(Meets_Claim),
+    Recalled = factor(Recalled),
     claimed_spf = as.numeric(gsub("\\+", "", Claimed_SPF)),
     diff_spf = Measured_SPF - claimed_spf,
     midpoint = (Measured_SPF + claimed_spf) / 2,
@@ -61,7 +62,8 @@ p <- ggplot(data, aes(x = Measured_SPF, y = display_name)) +
   ) +
   geom_segment(
     aes(xend = claimed_spf, yend = display_name),
-    linewidth = 0.5
+    linewidth = 3,
+    color = "grey90",
   ) +
   geom_point(
     aes(x = claimed_spf),
@@ -130,8 +132,8 @@ p <- ggplot(data, aes(x = Measured_SPF, y = display_name)) +
   ) +
   annotate(
     "text",
-    x = 80,
-    y = 15,
+    x = 90,
+    y = 11.25,
     label = stringr::str_wrap(
       "Only 4 / 20 tested products reached or exceeded their claims.",
       width = 20
@@ -140,9 +142,53 @@ p <- ggplot(data, aes(x = Measured_SPF, y = display_name)) +
     color = "grey20",
     size = 3,
   ) +
+  geom_curve(
+    x = 85,
+    y = 10.25,
+    xend = 79,
+    yend = 9.25,
+    arrow = arrow(length = unit(0.15, "cm"), type = "closed"),
+    curvature = -0.25,
+    color = "grey20",
+    inherit.aes = FALSE
+  ) +
+  annotate(
+    "text",
+    x = 90,
+    y = 4.75,
+    label = stringr::str_wrap(
+      "Ultra Violette's product had only an SPF of 4 and was later recalled by the company.",
+      width = 20
+    ),
+    hjust = 1,
+    color = "grey20",
+    size = 3,
+  ) +
+  geom_curve(
+    x = 73,
+    y = 3.5,
+    xend = 60,
+    yend = 2,
+    arrow = arrow(length = unit(0.15, "cm"), type = "closed"),
+    curvature = -0.25,
+    color = "grey20",
+    inherit.aes = FALSE
+  ) +
+  annotate(
+    "text",
+    x = 90,
+    y = 19.5,
+    label = stringr::str_wrap(
+      "An SPF rating of 50 means that only 1/50th of UVB rays, or 2%, penetrate the skin.",
+      width = 20
+    ),
+    hjust = 1,
+    color = "grey20",
+    size = 3,
+  ) +
   scale_x_continuous(
     breaks = seq(0, 80, by = 10),
-    limits = c(-40, 80),
+    limits = c(-40, 90),
     expand = c(0.05, 0),
     oob = scales::squish,
   ) +
@@ -151,7 +197,10 @@ p <- ggplot(data, aes(x = Measured_SPF, y = display_name)) +
     title = glue::glue(
       "<span style='color:{color_claim};'>Claimed</span> vs <span style='color:{color_measured};'>Measured</span> Sun Protection Factor"
     ),
-    subtitle = "16 out of 20 sunscreens failed to meet their SPF claims",
+    subtitle = stringr::str_wrap(
+      "The Austrialian nonprofit CHOICE analyzed 20 different sunscreens. 16 failed to meet their stated SPF claims.",
+      width = 90,
+    ),
     x = NULL,
     y = NULL,
     caption = social_caption,
@@ -178,10 +227,14 @@ p <- ggplot(data, aes(x = Measured_SPF, y = display_name)) +
       face = "bold",
       size = 20,
       hjust = 0,
-      margin = margin(l = -5, b = 10),
+      margin = margin(l = -40, b = 10),
       lineheight = 1.2,
     ),
-    plot.subtitle = element_text(size = 10, color = "gray40"),
+    plot.subtitle = element_text(
+      size = 10,
+      color = "gray20",
+      margin = margin(l = -40, b = 10),
+    ),
     text = element_text(family = "Roboto"),
   ) +
   patchwork::plot_annotation(
