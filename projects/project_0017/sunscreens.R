@@ -28,32 +28,30 @@ data <- sunscreens |>
     Product_Name = factor(Product_Name),
     Claimed_SPF = factor(Claimed_SPF),
     Meets_Claim = factor(Meets_Claim),
-    display_name = paste(
-      Brand,
-      stringr::str_wrap(Product_Name, width = 30),
-      sep = "\n"
-    ),
     claimed_spf = as.numeric(gsub("\\+", "", Claimed_SPF)),
     diff_spf = Measured_SPF - claimed_spf,
     midpoint = (Measured_SPF + claimed_spf) / 2,
     measured_hjust = ifelse(Measured_SPF < claimed_spf, 1.7, -0.7),
     claimed_hjust = ifelse(Measured_SPF > claimed_spf, 1.7, -0.7),
+
+    wrapped_name = stringr::str_wrap(Product_Name, width = 25),
+    wrapped_name = stringr::str_replace_all(wrapped_name, "\\n", "<br>"),
+    display_name = glue::glue("<b>{Brand}</b><br>{wrapped_name}"),
+    display_name = forcats::fct_reorder(
+      display_name,
+      as.character(Brand),
+      .desc = TRUE
+    ),
   )
+
 
 color_claim = "grey20"
 color_okay = "#19647E"
 color_not_okay = "#C73E1D"
 
-ggplot(
-  data,
-  aes(y = reorder(display_name, -Measured_SPF))
-) +
+p <- ggplot(data, aes(x = Measured_SPF, y = display_name)) +
   geom_segment(
-    aes(
-      x = Measured_SPF,
-      xend = claimed_spf,
-      yend = reorder(display_name, -Measured_SPF)
-    ),
+    aes(xend = claimed_spf, yend = display_name),
     linewidth = 0.5
   ) +
   geom_point(
@@ -83,6 +81,23 @@ ggplot(
     ),
     size = 3,
   ) +
+  geom_text(
+    aes(x = 5, label = Brand),
+    hjust = 1,
+    fontface = "bold",
+    family = "Roboto Condensed",
+    nudge_y = 0.15,
+    size = 3.5
+  ) +
+  geom_text(
+    aes(x = 5, label = Product_Name),
+    hjust = 1,
+    fontface = "plain",
+    family = "Roboto Condensed",
+    nudge_y = -0.25,
+    size = 3,
+    lineheight = 0.9
+  ) +
   scale_color_manual(
     values = c("No" = color_not_okay, "Yes" = color_okay)
   ) +
@@ -91,7 +106,8 @@ ggplot(
     limits = c(0, 80),
     expand = c(0.05, 0),
   ) +
-
+  scale_y_discrete(labels = identity) +
+  coord_cartesian(clip = "off") +
   labs(
     title = "Sunscreen SPF Claims vs Measured Results",
     subtitle = "16 out of 20 sunscreens failed to meet their SPF claims",
@@ -100,7 +116,8 @@ ggplot(
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 8, family = "Roboto Condensed"),
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
     legend.position = "none",
     panel.grid.minor.x = element_blank(),
     panel.grid.major.x = element_line(
@@ -114,7 +131,18 @@ ggplot(
       linetype = "solid",
     ),
     plot.margin = margin(l = 40, r = 15, t = 15, b = 15),
-    plot.title = element_text(face = "bold", size = 14),
-    plot.subtitle = element_text(size = 10, color = "gray40"),
+    # plot.title = element_text(face = "bold", size = 14),
+    # plot.subtitle = element_text(size = 10, color = "gray40"),
     text = element_text(family = "Roboto"),
   )
+
+p
+
+# ggsave(
+#   here::here("projects", "project_0017", "sunscreens.svg"),
+#   plot = p,
+#   width = 650,
+#   height = 750,
+#   units = "px",
+#   dpi = 100,
+# )

@@ -50,4 +50,6 @@ dependencies = [
     "RColorBrewer",
     { name = "ggh4x", git = "https://github.com/teunbrand/ggh4x/", commit = "63c91b78676eb005ac948fe3498fea5d29013539"},
     "legendry",
+    "systemfonts",
+    "ragg",
 ]
